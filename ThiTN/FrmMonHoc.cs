@@ -17,8 +17,19 @@ namespace ThiTN
             InitializeComponent();
         }
 
-        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void mONHOCBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
+            this.Validate();
+            this.bdsMH.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.dS);
+
+        }
+
+        private void FrmMonHoc_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'dS.MONHOC' table. You can move, or remove it, as needed.
+            this.mONHOCTableAdapter.Fill(this.dS.MONHOC);
+            this.mONHOCTableAdapter.Update(this.dS.MONHOC);
 
         }
     }

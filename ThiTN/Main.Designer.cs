@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            this.btn_MH = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.FrmMonHoc = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.btnFrmMonHoc = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -46,9 +48,10 @@
             // 
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.ribbonControl1.ExpandCollapseItem});
+            this.ribbonControl1.ExpandCollapseItem,
+            this.btn_MH});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 1;
+            this.ribbonControl1.MaxItemId = 2;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -56,10 +59,18 @@
             this.ribbonControl1.Size = new System.Drawing.Size(1078, 158);
             this.ribbonControl1.Click += new System.EventHandler(this.ribbonControl1_Click);
             // 
+            // btn_MH
+            // 
+            this.btn_MH.Id = 1;
+            this.btn_MH.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_MH.ImageOptions.Image")));
+            this.btn_MH.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_MH.ImageOptions.LargeImage")));
+            this.btn_MH.Name = "btn_MH";
+            this.btn_MH.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMonHoc_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.FrmMonHoc,
+            this.btnFrmMonHoc,
             this.ribbonPageGroup3,
             this.ribbonPageGroup4,
             this.ribbonPageGroup5,
@@ -68,10 +79,11 @@
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "QUẢN TRỊ";
             // 
-            // FrmMonHoc
+            // btnFrmMonHoc
             // 
-            this.FrmMonHoc.Name = "FrmMonHoc";
-            this.FrmMonHoc.Text = "MÔN HỌC";
+            this.btnFrmMonHoc.ItemLinks.Add(this.btn_MH);
+            this.btnFrmMonHoc.Name = "btnFrmMonHoc";
+            this.btnFrmMonHoc.Text = "MÔN HỌC";
             // 
             // ribbonPageGroup3
             // 
@@ -112,9 +124,11 @@
             // 
             // xtraScrollableControl1
             // 
-            this.xtraScrollableControl1.Location = new System.Drawing.Point(12, 178);
+            this.xtraScrollableControl1.Appearance.BackColor = System.Drawing.Color.Lime;
+            this.xtraScrollableControl1.Appearance.Options.UseBackColor = true;
+            this.xtraScrollableControl1.Location = new System.Drawing.Point(24, 473);
             this.xtraScrollableControl1.Name = "xtraScrollableControl1";
-            this.xtraScrollableControl1.Size = new System.Drawing.Size(892, 345);
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(593, 234);
             this.xtraScrollableControl1.TabIndex = 1;
             this.xtraScrollableControl1.Click += new System.EventHandler(this.xtraScrollableControl1_Click);
             // 
@@ -140,7 +154,7 @@
 
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup FrmMonHoc;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup btnFrmMonHoc;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
@@ -149,6 +163,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup D;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl1;
+        private DevExpress.XtraBars.BarButtonItem btn_MH;
     }
 }
 
