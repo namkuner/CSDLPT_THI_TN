@@ -61,6 +61,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DS1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DS1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDangNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDangNhap.Designer.cs">
+      <DependentUpon>FrmDangNhap.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMonHoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +86,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmDangNhap.resx">
+      <DependentUpon>FrmDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmMonHoc.resx">
       <DependentUpon>FrmMonHoc.cs</DependentUpon>
     </EmbeddedResource>
@@ -93,6 +107,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="App.config" />
+    <None Include="ConnectionString.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="DS.xsc">
       <DependentUpon>DS.xsd</DependentUpon>
     </None>
@@ -103,6 +120,17 @@
     </None>
     <None Include="DS.xss">
       <DependentUpon>DS.xsd</DependentUpon>
+    </None>
+    <None Include="DS1.xsc">
+      <DependentUpon>DS1.xsd</DependentUpon>
+    </None>
+    <None Include="DS1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DS1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DS1.xss">
+      <DependentUpon>DS1.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

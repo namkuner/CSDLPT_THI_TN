@@ -52,5 +52,12 @@ namespace ThiTN
                 f.Show();
             }
         }
+        public void HienThiMenu()
+        {
+            MAGV.Text = "Mã GV: " + Program.username;
+            HOTEN.Text = "Họ tên: " + Program.mHoten;
+            NHOM.Text = "Nhóm: " + Program.mGroup;
+
+        }
     }
 }
