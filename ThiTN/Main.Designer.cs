@@ -41,7 +41,12 @@
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.MAGV = new System.Windows.Forms.ToolStripStatusLabel();
+            this.HOTEN = new System.Windows.Forms.ToolStripStatusLabel();
+            this.NHOM = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -132,11 +137,42 @@
             this.xtraScrollableControl1.TabIndex = 1;
             this.xtraScrollableControl1.Click += new System.EventHandler(this.xtraScrollableControl1_Click);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MAGV,
+            this.HOTEN,
+            this.NHOM});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 697);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1078, 22);
+            this.statusStrip1.TabIndex = 4;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // MAGV
+            // 
+            this.MAGV.Name = "MAGV";
+            this.MAGV.Size = new System.Drawing.Size(41, 17);
+            this.MAGV.Text = "MAGV";
+            // 
+            // HOTEN
+            // 
+            this.HOTEN.Name = "HOTEN";
+            this.HOTEN.Size = new System.Drawing.Size(45, 17);
+            this.HOTEN.Text = "HOTEN";
+            // 
+            // NHOM
+            // 
+            this.NHOM.Name = "NHOM";
+            this.NHOM.Size = new System.Drawing.Size(45, 17);
+            this.NHOM.Text = "NHOM";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1078, 719);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.xtraScrollableControl1);
             this.Controls.Add(this.ribbonControl1);
             this.IsMdiContainer = true;
@@ -145,6 +181,8 @@
             this.Text = "THI TRẮC NGHIỆM";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -164,6 +202,10 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl1;
         private DevExpress.XtraBars.BarButtonItem btn_MH;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        public System.Windows.Forms.ToolStripStatusLabel MAGV;
+        public System.Windows.Forms.ToolStripStatusLabel HOTEN;
+        public System.Windows.Forms.ToolStripStatusLabel NHOM;
     }
 }
 
