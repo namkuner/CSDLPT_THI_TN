@@ -33,6 +33,7 @@ namespace ThiTN
         public FrmDangNhap()
         {
             InitializeComponent();
+            checkGV.Checked = true;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -67,7 +68,6 @@ namespace ThiTN
         {
             if (ketNoi_CSDLGOC() == 0) return;
             layDSPM("SELECT * FROM  V_DS_PHANMANH");
-            coSo.SelectedIndex = 1;
             coSo.SelectedIndex = 0;
 
 
@@ -82,22 +82,28 @@ namespace ThiTN
             }
             Program.mlogin = taiKhoan.Text;
             Program.password = matKhau.Text;
-            if(Program.KetNoi() == 0)
+            Program.servername = coSo.SelectedValue.ToString();
+            Console.WriteLine(Program.servername);
+            if (Program.KetNoi() == 0)
             {
                 return;
             }
-            Program.servername = coSo.SelectedValue.ToString();
+            
             Program.mChinhanh = coSo.SelectedIndex;
             Program.mloginDN = Program.mlogin;
             Program.passwordDN = Program.password;
-            string strLenh = "EXEC SP_LAY_THONG_TIN_USER '" + Program.mlogin + "'";
+            string strLenh = "EXEC SP_LAY_THONG_TIN_GV '" + Program.mlogin + "'";
+            System.Console.Out.WriteLine(strLenh);
             Program.myReader = Program.ExecSqlDataReader(strLenh);
             if(Program.myReader == null)
             {
                 return;
             }
             Program.myReader.Read();
+            
             Program.username = Program.myReader.GetString(0);
+            Console.WriteLine(Program.myReader.GetString(0));
+            Console.WriteLine(Program.username);
             if (Convert.IsDBNull(Program.username))
             {
                 MessageBox.Show("Login bạn không có quyền truy cập dữ liệu\nBạn xem lại username và password", "", MessageBoxButtons.OK);
@@ -110,7 +116,27 @@ namespace ThiTN
             Program.frmChinh.MAGV.Text = Program.username;
             Program.frmChinh.HOTEN.Text = Program.mHoten;
             Program.frmChinh.NHOM.Text = Program.mGroup;
+            
             Program.frmChinh.HienThiMenu();
+            this.Hide();
+            Program.frmChinh.ShowDialog();
+            Program.frmChinh.Show();
+            Program.frmChinh.Close();
+
+        }
+
+        private void checkGV_CheckedChanged(object sender, EventArgs e)
+        {
+            this.grbMASV.Enabled = false;
+        }
+
+        private void checkSV_CheckedChanged(object sender, EventArgs e)
+        {
+            this.grbMASV.Enabled = true;
+        }
+
+        private void MASV_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
