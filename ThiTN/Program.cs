@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace ThiTN
@@ -21,8 +22,8 @@ namespace ThiTN
         public static String mlogin = "";
         public static String password = "";
 
-        public static String database = "QLVT";
-        public static String remotelogin = "htkn";
+        public static String database = "TN_CSDLPT";
+        public static String remotelogin = "HTKN";
         public static String remotepassword = "123456";
 
         public static String mloginDN = "";
@@ -43,6 +44,7 @@ namespace ThiTN
                 Program.connstr = "Data Source=" + Program.servername + ";Initial Catalog=" +
                       Program.database + ";User ID=" +
                       Program.mlogin + ";password=" + Program.password;
+                System.Console.Out.WriteLine(Program.connstr);
                 Program.conn.ConnectionString = Program.connstr;
                 Program.conn.Open();
                 return 1;
@@ -120,7 +122,8 @@ namespace ThiTN
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main()); 
+            frmChinh = new Main();
+            Application.Run(new FrmDangNhap()); 
         }
     }
 }
