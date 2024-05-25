@@ -88,7 +88,7 @@ namespace ThiTN
             else if (Program.mGroup == "CoSo")
             {
                 cmbCoSoFrmMonHoc.Enabled = false;
-                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = btnRefresh.Enabled = false;
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = btnRefresh.Enabled = true;
             }
             else if (Program.mGroup == "SinhVien")
             {
@@ -234,6 +234,7 @@ namespace ThiTN
                 this.mONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.mONHOCTableAdapter.Fill(this.dS1.MONHOC);
                 this.mONHOCTableAdapter.Update(this.dS1.MONHOC);
+
 
             }   
 

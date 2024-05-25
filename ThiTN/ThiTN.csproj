@@ -61,6 +61,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DS1.cs">
+      <DependentUpon>DS1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DS1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -71,6 +74,18 @@
     </Compile>
     <Compile Include="FrmDangNhap.Designer.cs">
       <DependentUpon>FrmDangNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGiaoVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGiaoVien.Designer.cs">
+      <DependentUpon>FrmGiaoVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGiaovien_Dangky.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGiaovien_Dangky.Designer.cs">
+      <DependentUpon>FrmGiaovien_Dangky.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMonHoc.cs">
       <SubType>Form</SubType>
@@ -88,6 +103,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmDangNhap.resx">
       <DependentUpon>FrmDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGiaoVien.resx">
+      <DependentUpon>FrmGiaoVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGiaovien_Dangky.resx">
+      <DependentUpon>FrmGiaovien_Dangky.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMonHoc.resx">
       <DependentUpon>FrmMonHoc.cs</DependentUpon>
