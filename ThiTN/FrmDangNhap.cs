@@ -128,11 +128,13 @@ namespace ThiTN
         private void checkGV_CheckedChanged(object sender, EventArgs e)
         {
             this.grbMASV.Enabled = false;
+            this.taiKhoan.Enabled = true;
         }
 
         private void checkSV_CheckedChanged(object sender, EventArgs e)
         {
             this.grbMASV.Enabled = true;
+            this.taiKhoan.Enabled = false;
         }
 
         private void MASV_TextChanged(object sender, EventArgs e)

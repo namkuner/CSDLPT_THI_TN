@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btn_MH = new DevExpress.XtraBars.BarButtonItem();
+            this.btnGV = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_Giaovien_Dangky = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.btnFrmMonHoc = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -38,6 +40,7 @@
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.D = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -53,10 +56,12 @@
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
+            this.ribbonControl1.SearchEditItem,
             this.btn_MH,
-            this.ribbonControl1.SearchEditItem});
+            this.btnGV,
+            this.btn_Giaovien_Dangky});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 2;
+            this.ribbonControl1.MaxItemId = 4;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -72,6 +77,22 @@
             this.btn_MH.Name = "btn_MH";
             this.btn_MH.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMonHoc_ItemClick);
             // 
+            // btnGV
+            // 
+            this.btnGV.Id = 2;
+            this.btnGV.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGV.ImageOptions.Image")));
+            this.btnGV.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnGV.ImageOptions.LargeImage")));
+            this.btnGV.Name = "btnGV";
+            this.btnGV.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
+            // 
+            // btn_Giaovien_Dangky
+            // 
+            this.btn_Giaovien_Dangky.Id = 3;
+            this.btn_Giaovien_Dangky.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_Giaovien_Dangky.ImageOptions.Image")));
+            this.btn_Giaovien_Dangky.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_Giaovien_Dangky.ImageOptions.LargeImage")));
+            this.btn_Giaovien_Dangky.Name = "btn_Giaovien_Dangky";
+            this.btn_Giaovien_Dangky.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_Giaovien_Dangky_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -80,7 +101,8 @@
             this.ribbonPageGroup4,
             this.ribbonPageGroup5,
             this.D,
-            this.ribbonPageGroup6});
+            this.ribbonPageGroup6,
+            this.ribbonPageGroup1});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "QUẢN TRỊ";
             // 
@@ -102,6 +124,7 @@
             // 
             // ribbonPageGroup5
             // 
+            this.ribbonPageGroup5.ItemLinks.Add(this.btnGV);
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             this.ribbonPageGroup5.Text = "GIÁO VIÊN";
             // 
@@ -114,6 +137,13 @@
             // 
             this.ribbonPageGroup6.Name = "ribbonPageGroup6";
             this.ribbonPageGroup6.Text = "THI";
+            // 
+            // ribbonPageGroup1
+            // 
+            this.ribbonPageGroup1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ribbonPageGroup1.ImageOptions.Image")));
+            this.ribbonPageGroup1.ItemLinks.Add(this.btn_Giaovien_Dangky);
+            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
+            this.ribbonPageGroup1.Text = "ĐĂNG KÝ THI";
             // 
             // ribbonPage2
             // 
@@ -194,6 +224,9 @@
         public System.Windows.Forms.ToolStripStatusLabel MAGV;
         public System.Windows.Forms.ToolStripStatusLabel HOTEN;
         public System.Windows.Forms.ToolStripStatusLabel NHOM;
+        private DevExpress.XtraBars.BarButtonItem btnGV;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private DevExpress.XtraBars.BarButtonItem btn_Giaovien_Dangky;
     }
 }
 
