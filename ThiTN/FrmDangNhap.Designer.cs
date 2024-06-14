@@ -103,6 +103,7 @@
             this.matKhau.Name = "matKhau";
             this.matKhau.Size = new System.Drawing.Size(219, 29);
             this.matKhau.TabIndex = 5;
+            this.matKhau.UseSystemPasswordChar = true;
             // 
             // btnDangNhap
             // 
@@ -122,6 +123,7 @@
             this.btnThoat.TabIndex = 7;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // groupBox1
             // 

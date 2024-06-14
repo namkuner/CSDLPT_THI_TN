@@ -37,8 +37,8 @@ namespace ThiTN.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ADMIN\\SERVER1;Initial Catalog=TN_CSDLPT;User ID=sa;TrustServerCertifi" +
-            "cate=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ADMIN\\SERVER1;Initial Catalog=TN_CSDLPT;User ID=sa;Password=123456;Tr" +
+            "ustServerCertificate=True")]
         public string TN_CSDLPTConnectionString1 {
             get {
                 return ((string)(this["TN_CSDLPTConnectionString1"]));

@@ -233,5 +233,10 @@ namespace ThiTN
             cmbMAKH.Enabled = true;
 
         }
+
+        private void mAKHLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

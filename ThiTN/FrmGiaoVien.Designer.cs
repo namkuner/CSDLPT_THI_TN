@@ -106,7 +106,7 @@
             // mAGVLabel
             // 
             mAGVLabel.AutoSize = true;
-            mAGVLabel.Location = new System.Drawing.Point(26, 31);
+            mAGVLabel.Location = new System.Drawing.Point(56, 80);
             mAGVLabel.Name = "mAGVLabel";
             mAGVLabel.Size = new System.Drawing.Size(39, 13);
             mAGVLabel.TabIndex = 0;
@@ -115,7 +115,7 @@
             // hOLabel
             // 
             hOLabel.AutoSize = true;
-            hOLabel.Location = new System.Drawing.Point(228, 32);
+            hOLabel.Location = new System.Drawing.Point(258, 84);
             hOLabel.Name = "hOLabel";
             hOLabel.Size = new System.Drawing.Size(26, 13);
             hOLabel.TabIndex = 2;
@@ -124,7 +124,7 @@
             // tENLabel
             // 
             tENLabel.AutoSize = true;
-            tENLabel.Location = new System.Drawing.Point(409, 31);
+            tENLabel.Location = new System.Drawing.Point(439, 88);
             tENLabel.Name = "tENLabel";
             tENLabel.Size = new System.Drawing.Size(30, 13);
             tENLabel.TabIndex = 4;
@@ -133,7 +133,7 @@
             // dIACHILabel
             // 
             dIACHILabel.AutoSize = true;
-            dIACHILabel.Location = new System.Drawing.Point(615, 28);
+            dIACHILabel.Location = new System.Drawing.Point(422, 166);
             dIACHILabel.Name = "dIACHILabel";
             dIACHILabel.Size = new System.Drawing.Size(47, 13);
             dIACHILabel.TabIndex = 6;
@@ -142,11 +142,12 @@
             // mAKHLabel
             // 
             mAKHLabel.AutoSize = true;
-            mAKHLabel.Location = new System.Drawing.Point(633, 103);
+            mAKHLabel.Location = new System.Drawing.Point(605, 83);
             mAKHLabel.Name = "mAKHLabel";
             mAKHLabel.Size = new System.Drawing.Size(39, 13);
             mAKHLabel.TabIndex = 8;
             mAKHLabel.Text = "MAKH:";
+            mAKHLabel.Click += new System.EventHandler(this.mAKHLabel_Click);
             // 
             // barManager1
             // 
@@ -178,11 +179,11 @@
             this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThem, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnSua),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnGhi),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnXoa),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnPhucHoi),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnRefresh)});
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnSua, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnGhi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXoa, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnPhucHoi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnRefresh, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.bar2.OptionsBar.MultiLine = true;
             this.bar2.OptionsBar.UseWholeRow = true;
             this.bar2.Text = "Main menu";
@@ -200,6 +201,8 @@
             // 
             this.btnSua.Caption = "Sửa";
             this.btnSua.Id = 1;
+            this.btnSua.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.Image")));
+            this.btnSua.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.LargeImage")));
             this.btnSua.Name = "btnSua";
             this.btnSua.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSua_ItemClick);
             // 
@@ -207,6 +210,8 @@
             // 
             this.btnGhi.Caption = "Ghi";
             this.btnGhi.Id = 3;
+            this.btnGhi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.Image")));
+            this.btnGhi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.LargeImage")));
             this.btnGhi.Name = "btnGhi";
             this.btnGhi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGhi_ItemClick);
             // 
@@ -214,6 +219,8 @@
             // 
             this.btnXoa.Caption = "Xóa";
             this.btnXoa.Id = 2;
+            this.btnXoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.Image")));
+            this.btnXoa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.LargeImage")));
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXoa_ItemClick);
             // 
@@ -221,12 +228,16 @@
             // 
             this.btnPhucHoi.Caption = "Phục hồi";
             this.btnPhucHoi.Id = 4;
+            this.btnPhucHoi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPhucHoi.ImageOptions.Image")));
+            this.btnPhucHoi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnPhucHoi.ImageOptions.LargeImage")));
             this.btnPhucHoi.Name = "btnPhucHoi";
             // 
             // btnRefresh
             // 
             this.btnRefresh.Caption = "Refresh";
             this.btnRefresh.Id = 5;
+            this.btnRefresh.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRefresh.ImageOptions.Image")));
+            this.btnRefresh.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnRefresh.ImageOptions.LargeImage")));
             this.btnRefresh.Name = "btnRefresh";
             // 
             // bar3
@@ -353,7 +364,7 @@
             this.gcGV.MainView = this.gridView1;
             this.gcGV.MenuManager = this.barManager1;
             this.gcGV.Name = "gcGV";
-            this.gcGV.Size = new System.Drawing.Size(968, 220);
+            this.gcGV.Size = new System.Drawing.Size(968, 321);
             this.gcGV.TabIndex = 9;
             this.gcGV.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -421,41 +432,41 @@
             this.panelControl2.Controls.Add(mAGVLabel);
             this.panelControl2.Controls.Add(this.txtMAGV);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(0, 313);
+            this.panelControl2.Location = new System.Drawing.Point(0, 414);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(968, 416);
+            this.panelControl2.Size = new System.Drawing.Size(968, 315);
             this.panelControl2.TabIndex = 10;
             this.panelControl2.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl2_Paint);
             // 
             // quyen
             // 
             this.quyen.FormattingEnabled = true;
-            this.quyen.Location = new System.Drawing.Point(231, 146);
+            this.quyen.Location = new System.Drawing.Point(290, 163);
             this.quyen.Name = "quyen";
-            this.quyen.Size = new System.Drawing.Size(121, 21);
+            this.quyen.Size = new System.Drawing.Size(100, 21);
             this.quyen.TabIndex = 13;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(163, 154);
+            this.label2.Location = new System.Drawing.Point(243, 166);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 13);
+            this.label2.Size = new System.Drawing.Size(49, 13);
             this.label2.TabIndex = 12;
-            this.label2.Text = "Quyền";
+            this.label2.Text = "Quyền : ";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(160, 108);
+            this.label1.Location = new System.Drawing.Point(36, 166);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 11;
-            this.label1.Text = "Mật Khẩu";
+            this.label1.Text = "Mật Khẩu: ";
             // 
             // matKhau
             // 
-            this.matKhau.Location = new System.Drawing.Point(231, 105);
+            this.matKhau.Location = new System.Drawing.Point(101, 163);
             this.matKhau.MenuManager = this.barManager1;
             this.matKhau.Name = "matKhau";
             this.matKhau.Size = new System.Drawing.Size(100, 20);
@@ -468,9 +479,9 @@
             this.cmbMAKH.DataSource = this.bdsKhoa;
             this.cmbMAKH.DisplayMember = "TENKH";
             this.cmbMAKH.FormattingEnabled = true;
-            this.cmbMAKH.Location = new System.Drawing.Point(678, 100);
+            this.cmbMAKH.Location = new System.Drawing.Point(650, 80);
             this.cmbMAKH.Name = "cmbMAKH";
-            this.cmbMAKH.Size = new System.Drawing.Size(121, 21);
+            this.cmbMAKH.Size = new System.Drawing.Size(100, 21);
             this.cmbMAKH.TabIndex = 9;
             this.cmbMAKH.ValueMember = "MAKH";
             // 
@@ -482,16 +493,16 @@
             // txtDiaChi
             // 
             this.txtDiaChi.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsGV, "DIACHI", true));
-            this.txtDiaChi.Location = new System.Drawing.Point(668, 25);
+            this.txtDiaChi.Location = new System.Drawing.Point(475, 163);
             this.txtDiaChi.MenuManager = this.barManager1;
             this.txtDiaChi.Name = "txtDiaChi";
-            this.txtDiaChi.Size = new System.Drawing.Size(100, 20);
+            this.txtDiaChi.Size = new System.Drawing.Size(282, 20);
             this.txtDiaChi.TabIndex = 7;
             // 
             // txtTen
             // 
             this.txtTen.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsGV, "TEN", true));
-            this.txtTen.Location = new System.Drawing.Point(445, 24);
+            this.txtTen.Location = new System.Drawing.Point(475, 81);
             this.txtTen.MenuManager = this.barManager1;
             this.txtTen.Name = "txtTen";
             this.txtTen.Size = new System.Drawing.Size(100, 20);
@@ -500,7 +511,7 @@
             // txtHo
             // 
             this.txtHo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsGV, "HO", true));
-            this.txtHo.Location = new System.Drawing.Point(260, 29);
+            this.txtHo.Location = new System.Drawing.Point(290, 81);
             this.txtHo.MenuManager = this.barManager1;
             this.txtHo.Name = "txtHo";
             this.txtHo.Size = new System.Drawing.Size(100, 20);
@@ -509,7 +520,7 @@
             // txtMAGV
             // 
             this.txtMAGV.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsGV, "MAGV", true));
-            this.txtMAGV.Location = new System.Drawing.Point(71, 28);
+            this.txtMAGV.Location = new System.Drawing.Point(101, 77);
             this.txtMAGV.MenuManager = this.barManager1;
             this.txtMAGV.Name = "txtMAGV";
             this.txtMAGV.Size = new System.Drawing.Size(100, 20);
