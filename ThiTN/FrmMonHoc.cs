@@ -122,7 +122,13 @@ namespace ThiTN
         private void btnPhucHoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             bdsMH.CancelEdit();
-            if (btnThem.Enabled == false) bdsMH.Position = vitri;
+            if (btnThem.Enabled == false) 
+            {
+                bdsMH.RemoveCurrent();
+                
+
+            }
+            bdsMH.Position = vitri;
             gcMH.Enabled = true;
             txtpanel.Enabled = false;
             btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnRefresh.Enabled = true;
@@ -169,6 +175,7 @@ namespace ThiTN
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            
             if (txtMAMH.Text.Trim() == "")
             {
                 MessageBox.Show("Mã môn học không được thiếu!", "", MessageBoxButtons.OK);
@@ -242,6 +249,13 @@ namespace ThiTN
 
         private void gcMH_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            //close form
+            this.Close();
 
         }
     }

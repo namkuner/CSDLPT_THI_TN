@@ -46,7 +46,7 @@ BEGIN
 		-- Lấy Câu thi ở cơ sở hiện tại
 		
 		INSERT INTO @CauHoiDaThem (CauHoi)
-		EXEC sp_LayCauHoi @SoCauThi, @TrinhDo, @MaMonHoc,@MaCoSo
+		EXEC sp_LayCauHoi @SoCauThi, @TrinhDo, @MaMonHoc,@MaCoSo,1,@CauHoiDaThem
 		SELECT @SoDong = COUNT(*) FROM @CauHoiDaThem;
 		-- Nếu lấy đủ RETURN  
 		IF @SoDong = @SoCauThi --Trường hợp Lấy 100 câu thi, số lượng câu ở trình độ A,B là CS1[A,B] CS2[A,B]:  100,CS1[110,110],CS2[110,110] 
@@ -62,7 +62,7 @@ BEGIN
 			
 			SET @SoCauLay = @SoCauThi -@SoDong
 			INSERT INTO @CauHoiDaThem (CauHoi)
-			EXEC sp_LayCauHoi @SoCauLay, @TrinhDoThapHon, @MaMonHoc,@MaCoSo
+			EXEC sp_LayCauHoi @SoCauLay, @TrinhDoThapHon, @MaMonHoc,@MaCoSo,1,@CauHoiDaThem
 			SELECT @SoDong = COUNT(*) FROM @CauHoiDaThem;
 			--Trường hợp lấy hết câu có trình độ thấp hơn nhưng vẫn không đủ bộ đề
 			IF @SoDong = @SoCauThi -- 100,CS1[80,110],CS2[110,110] 
@@ -77,7 +77,7 @@ BEGIN
 			BEGIN
 				SET @SoCauLay = @SoCauThi -@SoDong
 				INSERT INTO @CauHoiDaThem (CauHoi)
-				EXEC sp_LayCauHoi @SoCauLay, @TrinhDo, @MaMonHoc,@MaCoSoConLai
+				EXEC sp_LayCauHoi @SoCauLay, @TrinhDo, @MaMonHoc,@MaCoSo,0,@CauHoiDaThem
 				SELECT @SoDong = COUNT(*) FROM @CauHoiDaThem;
 				IF  @SoDong = @SoCauThi -- 100,CS1[80,10],CS2[10,110] 
 				BEGIN
@@ -92,7 +92,7 @@ BEGIN
 				BEGIN
 					SET @SoCauLay = @SoCauThi -@SoDong
 					INSERT INTO @CauHoiDaThem (CauHoi)
-					EXEC sp_LayCauHoi @SoCauLay, @TrinhDoThapHon, @MaMonHoc,@MaCoSoConLai
+					EXEC sp_LayCauHoi @SoCauLay, @TrinhDoThapHon, @MaMonHoc,@MaCoSo,0,@CauHoiDaThem
 					SELECT @SoDong = COUNT(*) FROM @CauHoiDaThem;	
 					IF @SoDong = @SoCauThi --100,CS1[80,10],CS2[5,110]
 					BEGIN
@@ -117,7 +117,7 @@ BEGIN
 			DECLARE @tmp TABLE (CauHoi INT);
 			DECLARE @RowCount INT;
 			INSERT INTO @tmp (CauHoi)
-			EXEC sp_LayCauHoi @SoCauThi, @TrinhDo, @MaMonHoc,@MaCoSoConLai
+			EXEC sp_LayCauHoi @SoCauThi, @TrinhDo, @MaMonHoc,@MaCoSo,0,@CauHoiDaThem
 			SELECT @RowCount = COUNT(*) FROM @tmp 
 
 			--Điều chú ý ở đây là CS1 không đủ thì  giờ qua CS2, 
@@ -135,7 +135,7 @@ BEGIN
 
 				SET @SoCauLay = @SoCauThi - @SoDong
 				INSERT INTO @CauHoiDaThem (CauHoi)
-				EXEC sp_LayCauHoi @SoCauLay, @TrinhDoThapHon, @MaMonHoc,@MaCoSo
+				EXEC sp_LayCauHoi @SoCauLay, @TrinhDoThapHon, @MaMonHoc,@MaCoSo,1,@CauHoiDaThem
 				SELECT @SoDong = COUNT(*) FROM @CauHoiDaThem;	
 
 				IF @SoDong = @SoCauLay -- 100,CS1[50,110],CS2[110,110]
@@ -150,7 +150,7 @@ BEGIN
 				BEGIN
 					SET @SoCauLay = @SoCauThi - @SoDong
 					INSERT INTO @CauHoiDaThem (CauHoi)
-					EXEC sp_LayCauHoi @SoCauLay, @TrinhDo, @MaMonHoc,@MaCoSoConLai
+					EXEC sp_LayCauHoi @SoCauLay, @TrinhDo, @MaMonHoc,@MaCoSo,0,@CauHoiDaThem
 					SELECT @SoDong = COUNT(*) FROM @CauHoiDaThem;
 					IF @SoDong = @SoCauLay -- 100,CS1[50,10],CS2[110,110]
 					BEGIN
@@ -165,7 +165,7 @@ BEGIN
 					BEGIN
 						SET @SoCauLay = @SoCauThi - @SoDong
 						INSERT INTO @CauHoiDaThem (CauHoi)
-						EXEC sp_LayCauHoi @SoCauLay, @TrinhDoThapHon, @MaMonHoc,@MaCoSoConLai
+						EXEC sp_LayCauHoi @SoCauLay, @TrinhDoThapHon, @MaMonHoc,@MaCoSo,0,@CauHoiDaThem
 						SELECT @SoDong = COUNT(*) FROM @CauHoiDaThem;
 						IF @SoDong =@SoCauLay -- 100,CS1[50,10],CS2[30,110]
 						BEGIN
@@ -195,7 +195,7 @@ BEGIN
 	BEGIN
 		
 		INSERT INTO @CauHoiDaThem (CauHoi)
-		EXEC sp_LayCauHoi @SoCauThi, @TrinhDo, @MaMonHoc,@MaCoSo
+		EXEC sp_LayCauHoi @SoCauThi, @TrinhDo, @MaMonHoc,@MaCoSo,1,@CauHoiDaThem
 		SELECT @SoDong = COUNT(*) FROM @CauHoiDaThem;
 		IF @SoDong =@SoCauThi -- 100,CS1[100],CS2[100]
 		BEGIN
@@ -210,7 +210,7 @@ BEGIN
 			
 			SET @SoCauLay = @SoCauThi - @SoDong
 			INSERT INTO @CauHoiDaThem (CauHoi)
-			EXEC sp_LayCauHoi @SoCauLay, @TrinhDo, @MaMonHoc,@MaCoSoConLai
+			EXEC sp_LayCauHoi @SoCauLay, @TrinhDo, @MaMonHoc,@MaCoSo,0,@CauHoiDaThem
 			SELECT @SoDong = COUNT(*) FROM @CauHoiDaThem;
 			IF @SoDong =@SoCauLay -- 100,CS1[30],CS2[100]
 			BEGIN

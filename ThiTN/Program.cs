@@ -30,6 +30,7 @@ namespace ThiTN
         public static String passwordDN = "";
         public static String mGroup = "";
         public static String mHoten = "";
+        public static String maSV = "";
 
         public static int mChinhanh = 0;
 

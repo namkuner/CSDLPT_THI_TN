@@ -201,8 +201,13 @@
             // MAGV
             // 
             this.MAGV.Name = "MAGV";
+<<<<<<< HEAD
             this.MAGV.Size = new System.Drawing.Size(51, 20);
             this.MAGV.Text = "MAGV";
+=======
+            this.MAGV.Size = new System.Drawing.Size(26, 17);
+            this.MAGV.Text = "MA";
+>>>>>>> df5352db4303b5f046be84e6165b1267013c9353
             // 
             // HOTEN
             // 
