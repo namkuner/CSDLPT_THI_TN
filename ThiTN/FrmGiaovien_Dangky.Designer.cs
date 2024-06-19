@@ -64,6 +64,8 @@
             this.colLAN = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSOCAUTHI = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTHOIGIAN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.chiTiet = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.cmbMALOP = new System.Windows.Forms.ComboBox();
             this.bdsLOP = new System.Windows.Forms.BindingSource(this.components);
@@ -92,6 +94,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bdsGVDK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcGVDK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bdsLOP)).BeginInit();
@@ -319,6 +322,8 @@
             this.gcGVDK.MainView = this.gridView1;
             this.gcGVDK.MenuManager = this.barManager1;
             this.gcGVDK.Name = "gcGVDK";
+            this.gcGVDK.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemButtonEdit1});
             this.gcGVDK.Size = new System.Drawing.Size(892, 220);
             this.gcGVDK.TabIndex = 6;
             this.gcGVDK.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -335,7 +340,8 @@
             this.colNGAYTHI,
             this.colLAN,
             this.colSOCAUTHI,
-            this.colTHOIGIAN});
+            this.colTHOIGIAN,
+            this.chiTiet});
             this.gridView1.GridControl = this.gcGVDK;
             this.gridView1.Name = "gridView1";
             // 
@@ -401,6 +407,24 @@
             this.colTHOIGIAN.Name = "colTHOIGIAN";
             this.colTHOIGIAN.Visible = true;
             this.colTHOIGIAN.VisibleIndex = 7;
+            // 
+            // chiTiet
+            // 
+            this.chiTiet.Caption = "Chi Tiết";
+            this.chiTiet.ColumnEdit = this.repositoryItemButtonEdit1;
+            this.chiTiet.Name = "chiTiet";
+            this.chiTiet.Visible = true;
+            this.chiTiet.VisibleIndex = 9;
+            // 
+            // repositoryItemButtonEdit1
+            // 
+            this.repositoryItemButtonEdit1.AutoHeight = false;
+            this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
+            this.repositoryItemButtonEdit1.NullText = "Chi Tiết";
+            this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.repositoryItemButtonEdit1.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEdit1_ButtonClick);
             // 
             // panelControl2
             // 
@@ -577,6 +601,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bdsGVDK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcGVDK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
@@ -619,6 +644,14 @@
         private DevExpress.XtraEditors.SpinEdit txtSOCAUTHI;
         private DS1TableAdapters.BODE_DANGKYTableAdapter bODE_DANGKYTableAdapter;
         private System.Windows.Forms.BindingSource bdsBDDK;
+        private System.Windows.Forms.ComboBox cmbMAMH;
+        private System.Windows.Forms.BindingSource bdsMH;
+        private DS1TableAdapters.MONHOCTableAdapter mONHOCTableAdapter;
+        private System.Windows.Forms.ComboBox cmbTRINHDO;
+        private DevExpress.XtraBars.BarButtonItem btnGhi;
+        private System.Windows.Forms.BindingSource bdsLOP;
+        private DS1TableAdapters.LOPTableAdapter lOPTableAdapter;
+        private System.Windows.Forms.ComboBox cmbMALOP;
         private DevExpress.XtraGrid.Columns.GridColumn colMAGVDK;
         private DevExpress.XtraGrid.Columns.GridColumn colMAGV;
         private DevExpress.XtraGrid.Columns.GridColumn colMAMH;
@@ -628,13 +661,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colLAN;
         private DevExpress.XtraGrid.Columns.GridColumn colSOCAUTHI;
         private DevExpress.XtraGrid.Columns.GridColumn colTHOIGIAN;
-        private System.Windows.Forms.ComboBox cmbMAMH;
-        private System.Windows.Forms.BindingSource bdsMH;
-        private DS1TableAdapters.MONHOCTableAdapter mONHOCTableAdapter;
-        private System.Windows.Forms.ComboBox cmbTRINHDO;
-        private DevExpress.XtraBars.BarButtonItem btnGhi;
-        private System.Windows.Forms.BindingSource bdsLOP;
-        private DS1TableAdapters.LOPTableAdapter lOPTableAdapter;
-        private System.Windows.Forms.ComboBox cmbMALOP;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
+        private DevExpress.XtraGrid.Columns.GridColumn chiTiet;
     }
 }

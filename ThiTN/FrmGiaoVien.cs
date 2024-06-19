@@ -76,11 +76,13 @@ namespace ThiTN
             else if (Program.mGroup == "CoSo")
             {
                 cmbCoSoFrmGiaoVien.Enabled = false;
-                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = btnRefresh.Enabled = false;
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = btnRefresh.Enabled = true;
             }
             else
             {
                 cmbCoSoFrmGiaoVien.Enabled = false;
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = btnRefresh.Enabled = false;
+
             }
 
         }
@@ -139,7 +141,6 @@ namespace ThiTN
                 bdsGV.ResetCurrentItem();
                 this.gIAOVIENTableAdapter.Update(this.dS1.GIAOVIEN);
                 this.gIAOVIENTableAdapter.Fill(this.dS1.GIAOVIEN);
-                this.gIAOVIENTableAdapter.Update(this.dS1.GIAOVIEN);
                 gcGV.Enabled = true;
                 panelControl2.Enabled = false;
                 btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnRefresh.Enabled = true;
@@ -209,7 +210,7 @@ namespace ThiTN
                     bdsGV.RemoveCurrent();
                     this.gIAOVIENTableAdapter.Update(this.dS1.GIAOVIEN);
                     String cauTruyVan =
-                                "EXEC sp_TaoTaiKhoan '" + maGV +"' , '" +maGV +"'";
+                                "EXEC Xoa_Login '" + maGV +"' , '" +maGV +"'";
                     SqlCommand sqlCommand = new SqlCommand(cauTruyVan, Program.conn);
                 }
                 catch (Exception ex)

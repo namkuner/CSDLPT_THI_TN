@@ -144,5 +144,10 @@ namespace ThiTN
                 MessageBox.Show("Lỗi ghi đăng ký thi!/n" + ex.Message, "", MessageBoxButtons.OK);
             }
         }
+
+        private void repositoryItemButtonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+
+        }
     }
 }
