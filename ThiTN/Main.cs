@@ -11,6 +11,8 @@ namespace ThiTN
 {
     public partial class Main : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        private Boolean checkOpenDeThi = false;
+        private FrmBoDe frmBoDe = null;
         public Main()
         {
             InitializeComponent();
@@ -27,6 +29,7 @@ namespace ThiTN
                 this.btn_MH.Enabled = true;
                 this.btnGV.Enabled = false;
                 this.btn_Giaovien_Dangky.Enabled = true;
+                this.DE_btn.Enabled = true;
             }
             else if (Program.mGroup == "CoSo")
             {
@@ -109,6 +112,36 @@ namespace ThiTN
                 f.MdiParent = this;
                 f.Show();
             }
+        }
+
+
+        private void barButtonItem1_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form form = this.CheckExists(typeof(FrmBoDe));
+            if (form == null)
+            {
+
+                frmBoDe = new FrmBoDe();
+                frmBoDe.MdiParent = this;
+
+                frmBoDe.Show();
+                checkOpenDeThi = true;
+            }
+            else form.Activate();
+        }
+
+        private void btn_Thi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form form = this.CheckExists(typeof(FrmThi));
+            if (form == null)
+            {
+
+                FrmThi frmThi = new FrmThi();
+                frmThi.MdiParent = this;
+
+                frmThi.Show();
+            }
+            else form.Activate();
         }
     }
 }

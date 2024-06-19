@@ -37,11 +37,22 @@ namespace ThiTN.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ADMIN\\SERVER1;Initial Catalog=TN_CSDLPT;User ID=sa;TrustServerCertifi" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-OE056AS\\SERVER1;Initial Catalog=TN_CSDLPT;Persist Security Info=True;User ID=sa;Password=123456;Encrypt=True;TrustServerCertifi" +
             "cate=True")]
         public string TN_CSDLPTConnectionString1 {
             get {
                 return ((string)(this["TN_CSDLPTConnectionString1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-OE056AS;Initial Catalog=TN_CSDLPT;Persist Security Info=True;" +
+            "User ID=sa;Password=123456;Encrypt=True;TrustServerCertificate=True")]
+        public string TN_CSDLPTConnectionString2 {
+            get {
+                return ((string)(this["TN_CSDLPTConnectionString2"]));
             }
         }
     }

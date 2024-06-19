@@ -4,6 +4,10 @@
 
     partial class DS1
     {
+        partial class MONHOCDataTable
+        {
+        }
+
         partial class GIAOVIEN_DANGKYDataTable
         {
 
