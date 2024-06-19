@@ -28,6 +28,7 @@ namespace ThiTN
 
         private void FrmGiaovien_Dangky_Load(object sender, EventArgs e)
         {
+
             // TODO: This line of code loads data into the 'dS1.MONHOC' table. You can move, or remove it, as needed.
             this.mONHOCTableAdapter.Fill(this.dS1.MONHOC);
             this.dS1.EnforceConstraints = false;
@@ -35,8 +36,13 @@ namespace ThiTN
             this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
             this.gIAOVIEN_DANGKYTableAdapter.FillByMAGV(this.dS1.GIAOVIEN_DANGKY, Program.username);
             // TODO: This line of code loads data into the 'dS1.BODE_DANGKY' table. You can move, or remove it, as needed.
+            
+            
             this.bODE_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
+            
             this.bODE_DANGKYTableAdapter.Fill(this.dS1.BODE_DANGKY);
+            // TODO: This line of code loads data into the 'dS1.LOP' table. You can move, or remove it, as needed.
+            this.lOPTableAdapter.Fill(this.dS1.LOP);
             cmbTRINHDO.Items.Add("A");
             cmbTRINHDO.Items.Add("B");
             cmbTRINHDO.Items.Add("C");
@@ -119,7 +125,7 @@ namespace ThiTN
                 bdsGVDK.EndEdit();
                 bdsGVDK.ResetCurrentItem();
                 string ngayThiString = $"'{txtNGAYTHI.DateTime.ToString("yyyy-MM-dd HH:mm", System.Globalization.CultureInfo.InvariantCulture)}'";
-                String cauTruyVan = "EXEC sp_ThemGiaovienDangky '" + txtMAGV.Text + "', '"  + txtMALOP.Text + "', '" + cmbMAMH.SelectedValue.ToString() + "', '" + cmbTRINHDO.Text + "', " +txtLAN.Text +", "+ txtSOCAUTHI.Text + ", " + ngayThiString + ", " + txtTHOIGIAN.Text;
+                String cauTruyVan = "EXEC sp_ThemGiaovienDangky '" + txtMAGV.Text + "', '"  + cmbMALOP.SelectedValue.ToString() + "', '" + cmbMAMH.SelectedValue.ToString() + "', '" + cmbTRINHDO.Text + "', " +txtLAN.Text +", "+ txtSOCAUTHI.Text + ", " + ngayThiString + ", " + txtTHOIGIAN.Text;
                 System.Console.Out.WriteLine(cauTruyVan);
 
 

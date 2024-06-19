@@ -40,6 +40,7 @@ namespace ThiTN
                 this.btnGV.Enabled = false;
                 this.btn_Giaovien_Dangky.Enabled = false;
             }
+            this.FormClosing += new FormClosingEventHandler(this.MainForm_FormClosing);
         }
 
         private void xtraScrollableControl1_Click(object sender, EventArgs e)
@@ -56,8 +57,14 @@ namespace ThiTN
 
         private void ribbonControl1_Click(object sender, EventArgs e)
         {
+            
         }
-   
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Gọi Application.Exit() để thoát toàn bộ ứng dụng
+            Application.Exit();
+        }
+
 
 
         private void Form1_Load(object sender, EventArgs e)

@@ -40,6 +40,7 @@
             this.btnXoa = new DevExpress.XtraBars.BarButtonItem();
             this.btnPhucHoi = new DevExpress.XtraBars.BarButtonItem();
             this.btnRefresh = new DevExpress.XtraBars.BarButtonItem();
+            this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -65,7 +66,6 @@
             this.txtpanel = new DevExpress.XtraEditors.PanelControl();
             this.txtTENMH = new DevExpress.XtraEditors.TextEdit();
             this.txtMAMH = new DevExpress.XtraEditors.TextEdit();
-            this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
             mAMHLabel = new System.Windows.Forms.Label();
             tENMHLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -87,7 +87,7 @@
             // mAMHLabel
             // 
             mAMHLabel.AutoSize = true;
-            mAMHLabel.Location = new System.Drawing.Point(77, 36);
+            mAMHLabel.Location = new System.Drawing.Point(62, 93);
             mAMHLabel.Name = "mAMHLabel";
             mAMHLabel.Size = new System.Drawing.Size(41, 13);
             mAMHLabel.TabIndex = 0;
@@ -96,7 +96,7 @@
             // tENMHLabel
             // 
             tENMHLabel.AutoSize = true;
-            tENMHLabel.Location = new System.Drawing.Point(372, 36);
+            tENMHLabel.Location = new System.Drawing.Point(357, 93);
             tENMHLabel.Name = "tENMHLabel";
             tENMHLabel.Size = new System.Drawing.Size(45, 13);
             tENMHLabel.TabIndex = 2;
@@ -196,6 +196,15 @@
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRefresh_ItemClick);
             // 
+            // btnThoat
+            // 
+            this.btnThoat.Caption = "Thoát";
+            this.btnThoat.Id = 6;
+            this.btnThoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.Image")));
+            this.btnThoat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.LargeImage")));
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoat_ItemClick);
+            // 
             // bar3
             // 
             this.bar3.BarName = "Status bar";
@@ -258,8 +267,10 @@
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.BANGDIEMTableAdapter = null;
+            this.tableAdapterManager.BODE_DANGKYTableAdapter = null;
             this.tableAdapterManager.BODETableAdapter = null;
             this.tableAdapterManager.COSOTableAdapter = null;
+            this.tableAdapterManager.CT_BAITHITableAdapter = null;
             this.tableAdapterManager.GIAOVIEN_DANGKYTableAdapter = null;
             this.tableAdapterManager.GIAOVIENTableAdapter = null;
             this.tableAdapterManager.KHOATableAdapter = null;
@@ -332,7 +343,7 @@
             this.gcMH.MainView = this.gridView1;
             this.gcMH.MenuManager = this.barManager1;
             this.gcMH.Name = "gcMH";
-            this.gcMH.Size = new System.Drawing.Size(800, 220);
+            this.gcMH.Size = new System.Drawing.Size(800, 286);
             this.gcMH.TabIndex = 19;
             this.gcMH.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -367,15 +378,15 @@
             this.txtpanel.Controls.Add(mAMHLabel);
             this.txtpanel.Controls.Add(this.txtMAMH);
             this.txtpanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtpanel.Location = new System.Drawing.Point(0, 288);
+            this.txtpanel.Location = new System.Drawing.Point(0, 354);
             this.txtpanel.Name = "txtpanel";
-            this.txtpanel.Size = new System.Drawing.Size(800, 302);
+            this.txtpanel.Size = new System.Drawing.Size(800, 236);
             this.txtpanel.TabIndex = 20;
             // 
             // txtTENMH
             // 
             this.txtTENMH.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsMH, "TENMH", true));
-            this.txtTENMH.Location = new System.Drawing.Point(423, 33);
+            this.txtTENMH.Location = new System.Drawing.Point(408, 90);
             this.txtTENMH.MenuManager = this.barManager1;
             this.txtTENMH.Name = "txtTENMH";
             this.txtTENMH.Size = new System.Drawing.Size(100, 20);
@@ -384,19 +395,11 @@
             // txtMAMH
             // 
             this.txtMAMH.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsMH, "MAMH", true));
-            this.txtMAMH.Location = new System.Drawing.Point(124, 33);
+            this.txtMAMH.Location = new System.Drawing.Point(109, 90);
             this.txtMAMH.MenuManager = this.barManager1;
             this.txtMAMH.Name = "txtMAMH";
             this.txtMAMH.Size = new System.Drawing.Size(100, 20);
             this.txtMAMH.TabIndex = 1;
-            // 
-            // btnThoat
-            // 
-            this.btnThoat.Caption = "Thoát";
-            this.btnThoat.Id = 6;
-            this.btnThoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.Image")));
-            this.btnThoat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.LargeImage")));
-            this.btnThoat.Name = "btnThoat";
             // 
             // FrmMonHoc
             // 
