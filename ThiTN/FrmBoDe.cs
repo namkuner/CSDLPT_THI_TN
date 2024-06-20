@@ -70,10 +70,10 @@ namespace ThiTN
             this.MONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
             this.MONHOCTableAdapter.Fill(this.TN_CSDLPTDataSet.MONHOC);
 
-            if (Program.mGroup.Equals("GiangVien") || Program.mGroup.Equals("CoSo"))
+            if (Program.mGroup.Equals("Giangvien") || Program.mGroup.Equals("CoSo"))
             {
                 btn_Them.Enabled = btn_Sua.Enabled = btn_Xoa.Enabled = true;
-                btn_Ghi.Enabled = btn_Huy.Enabled = btn_PhucHoi.Enabled = false;
+                btn_Ghi.Enabled = btn_Huy.Enabled = btn_undo.Enabled = btn_redo.Enabled = false;
                 this.BODETableAdapter.Connection.ConnectionString = Program.connstr;
                 this.BODETableAdapter.FillByGV(this.TN_CSDLPTDataSet.BODE, Program.username);
                 getMonHoc();
@@ -83,7 +83,7 @@ namespace ThiTN
                 this.BODETableAdapter.Connection.ConnectionString = Program.connstr;
                 this.BODETableAdapter.Fill(this.TN_CSDLPTDataSet.BODE);
                 btn_Them.Enabled = btn_Sua.Enabled = btn_Xoa.Enabled
-                   = btn_Ghi.Enabled = btn_PhucHoi.Enabled = false;
+                   = btn_Ghi.Enabled = btn_undo.Enabled = false;
             }
             setEnableEditCauHoi(false);
         }
@@ -105,7 +105,7 @@ namespace ThiTN
             {
                 int index = ccb_tenMonHoc.SelectedIndex;
                 cbbTenMonHoc1.SelectedIndex = index;
-                if (Program.mGroup.Equals("GiangVien") || Program.mGroup.Equals("CoSo"))
+                if (Program.mGroup.Equals("Giangvien") || Program.mGroup.Equals("CoSo"))
                 {
                     try
                     {
@@ -325,7 +325,7 @@ namespace ThiTN
         private void btn_Huy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             btn_Xoa.Enabled = btn_Sua.Enabled = btn_Them.Enabled = true;
-            btn_Ghi.Enabled = btn_Huy.Enabled = btn_PhucHoi.Enabled = false;
+            btn_Ghi.Enabled = btn_Huy.Enabled = btn_undo.Enabled = false;
             if (checkThem == true || checkSua == true || checkXoa == true)
             {
                 // khi nhấn nút Hủy thì réset lại các giá trị
@@ -441,8 +441,28 @@ namespace ThiTN
                 DataRowView selectedRow = (DataRowView)gridView1.GetFocusedRow();
                 if (selectedRow != null)
                 {
-                    // Kiểm tra xem câu hỏi đã được thi hay chưa
-                    // ...
+                    // Kiểm tra xem câu hỏi đã được thi hay chưa hoặc đã được đăng ký thi
+                    String queryCheck = "select Top 1 1 from CT_BAITHI as ctbt join BANGDIEM as bd on ctbt.MABD = bd.MABD where CAUHOI = " + selectedRow.Row["CAUHOI"];
+                    Program.myReader = Program.ExecSqlDataReader(queryCheck);
+                    if (Program.myReader == null)
+                    {
+                        Program.myReader.Close();
+                        Program.conn.Close();
+                        return;
+                    }
+                    else
+                    {
+                        if (Program.myReader.HasRows)
+                        {
+                            MessageBox.Show("Câu hỏi đã được thi hoặc đã được đăng ký thi nên không thể xóa", "Thông báo", MessageBoxButtons.OK);
+                            Program.myReader.Close();
+                            Program.conn.Close();
+                            return;
+                        }
+                        Program.myReader.Close();
+                        Program.conn.Close();
+                    }
+
 
                     // Nếu chưa thì xóa câu hỏi
                     DialogResult dr = MessageBox.Show("Bạn có chắc muốn xóa câu hỏi này?", "Thông báo", MessageBoxButtons.YesNo);
@@ -594,5 +614,8 @@ namespace ThiTN
             }
 
         }
+        // Phần undo redo thêm/sửa/xóa câu hỏi
+
+
     }
 }

@@ -112,8 +112,13 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\BoDe.cs" />
+    <Compile Include="Model\ExamQuestion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TN_CSDLPTDataSet.cs">
+      <DependentUpon>TN_CSDLPTDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="TN_CSDLPTDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
