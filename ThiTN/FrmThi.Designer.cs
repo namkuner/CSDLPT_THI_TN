@@ -79,6 +79,10 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.col_CauHoi = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.col_DapAn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lb_ThoiGianHeader2 = new System.Windows.Forms.Label();
+            this.lb_ThoiGianHeader1 = new System.Windows.Forms.Label();
+            this.lb_soCau2 = new System.Windows.Forms.Label();
+            this.lb_soCau1 = new System.Windows.Forms.Label();
             mALOPLabel = new System.Windows.Forms.Label();
             tENLOPLabel = new System.Windows.Forms.Label();
             tENMHLabel = new System.Windows.Forms.Label();
@@ -200,6 +204,10 @@
             // 
             // gb_BaiThi
             // 
+            this.gb_BaiThi.Controls.Add(this.lb_ThoiGianHeader2);
+            this.gb_BaiThi.Controls.Add(this.lb_ThoiGianHeader1);
+            this.gb_BaiThi.Controls.Add(this.lb_soCau2);
+            this.gb_BaiThi.Controls.Add(this.lb_soCau1);
             this.gb_BaiThi.Controls.Add(this.btn_TimDeThi);
             this.gb_BaiThi.Controls.Add(this.se_Lan);
             this.gb_BaiThi.Controls.Add(this.label6);
@@ -216,7 +224,7 @@
             // 
             // btn_TimDeThi
             // 
-            this.btn_TimDeThi.Location = new System.Drawing.Point(617, 69);
+            this.btn_TimDeThi.Location = new System.Drawing.Point(472, 69);
             this.btn_TimDeThi.Name = "btn_TimDeThi";
             this.btn_TimDeThi.Size = new System.Drawing.Size(75, 23);
             this.btn_TimDeThi.TabIndex = 6;
@@ -231,7 +239,7 @@
             0,
             0,
             0});
-            this.se_Lan.Location = new System.Drawing.Point(575, 32);
+            this.se_Lan.Location = new System.Drawing.Point(430, 32);
             this.se_Lan.Name = "se_Lan";
             this.se_Lan.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -241,7 +249,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(518, 36);
+            this.label6.Location = new System.Drawing.Point(373, 36);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(32, 16);
             this.label6.TabIndex = 4;
@@ -261,7 +269,7 @@
             this.dtp_NgayThi.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtp_NgayThi.Location = new System.Drawing.Point(117, 72);
             this.dtp_NgayThi.Name = "dtp_NgayThi";
-            this.dtp_NgayThi.Size = new System.Drawing.Size(265, 22);
+            this.dtp_NgayThi.Size = new System.Drawing.Size(214, 22);
             this.dtp_NgayThi.TabIndex = 2;
             this.dtp_NgayThi.Value = new System.DateTime(2024, 6, 18, 14, 50, 43, 0);
             // 
@@ -273,7 +281,7 @@
             this.ccb_MonHoc.FormattingEnabled = true;
             this.ccb_MonHoc.Location = new System.Drawing.Point(117, 31);
             this.ccb_MonHoc.Name = "ccb_MonHoc";
-            this.ccb_MonHoc.Size = new System.Drawing.Size(265, 24);
+            this.ccb_MonHoc.Size = new System.Drawing.Size(214, 24);
             this.ccb_MonHoc.TabIndex = 1;
             this.ccb_MonHoc.ValueMember = "MAMH";
             // 
@@ -575,6 +583,46 @@
             // 
             this.col_DapAn.Text = "Đáp Án";
             // 
+            // lb_ThoiGianHeader2
+            // 
+            this.lb_ThoiGianHeader2.AutoSize = true;
+            this.lb_ThoiGianHeader2.Location = new System.Drawing.Point(654, 75);
+            this.lb_ThoiGianHeader2.Name = "lb_ThoiGianHeader2";
+            this.lb_ThoiGianHeader2.Size = new System.Drawing.Size(57, 16);
+            this.lb_ThoiGianHeader2.TabIndex = 16;
+            this.lb_ThoiGianHeader2.Text = "100 Phút";
+            this.lb_ThoiGianHeader2.Visible = false;
+            // 
+            // lb_ThoiGianHeader1
+            // 
+            this.lb_ThoiGianHeader1.AutoSize = true;
+            this.lb_ThoiGianHeader1.Location = new System.Drawing.Point(580, 75);
+            this.lb_ThoiGianHeader1.Name = "lb_ThoiGianHeader1";
+            this.lb_ThoiGianHeader1.Size = new System.Drawing.Size(68, 16);
+            this.lb_ThoiGianHeader1.TabIndex = 15;
+            this.lb_ThoiGianHeader1.Text = "Thời Gian:";
+            this.lb_ThoiGianHeader1.Visible = false;
+            // 
+            // lb_soCau2
+            // 
+            this.lb_soCau2.AutoSize = true;
+            this.lb_soCau2.Location = new System.Drawing.Point(641, 34);
+            this.lb_soCau2.Name = "lb_soCau2";
+            this.lb_soCau2.Size = new System.Drawing.Size(28, 16);
+            this.lb_soCau2.TabIndex = 14;
+            this.lb_soCau2.Text = "100";
+            this.lb_soCau2.Visible = false;
+            // 
+            // lb_soCau1
+            // 
+            this.lb_soCau1.AutoSize = true;
+            this.lb_soCau1.Location = new System.Drawing.Point(580, 34);
+            this.lb_soCau1.Name = "lb_soCau1";
+            this.lb_soCau1.Size = new System.Drawing.Size(54, 16);
+            this.lb_soCau1.TabIndex = 13;
+            this.lb_soCau1.Text = "Số Câu:";
+            this.lb_soCau1.Visible = false;
+            // 
             // FrmThi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -655,5 +703,9 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader col_CauHoi;
         private System.Windows.Forms.ColumnHeader col_DapAn;
+        private System.Windows.Forms.Label lb_ThoiGianHeader2;
+        private System.Windows.Forms.Label lb_ThoiGianHeader1;
+        private System.Windows.Forms.Label lb_soCau2;
+        private System.Windows.Forms.Label lb_soCau1;
     }
 }

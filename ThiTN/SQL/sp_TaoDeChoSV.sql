@@ -35,7 +35,7 @@ BEGIN
         -- Kiểm tra nếu không tìm thấy MAGVDK
         IF @MAGVDK IS NULL
         BEGIN
-            RAISERROR ('Không tìm thấy MAGVDK cho các điều kiện đã cho.', 16, 1);
+            RAISERROR ('Không tìm thấy bảng đăng ký theo các dữ liệu đầu vào.', 16, 1);
             RETURN;
         END
 

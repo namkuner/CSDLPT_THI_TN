@@ -49,9 +49,11 @@ namespace ThiTN
 
         private void FrmThi_Load(object sender, EventArgs e)
         {
+            this.lOPTableAdapter.Connection.ConnectionString = Program.connstr;
             // TODO: This line of code loads data into the 'tN_CSDLPTDataSet.LOP' table. You can move, or remove it, as needed.
             this.lOPTableAdapter.FillByMASV(this.tN_CSDLPTDataSet.LOP, Program.maSV);
             // TODO: This line of code loads data into the 'tN_CSDLPTDataSet.MONHOC' table. You can move, or remove it, as needed.
+            this.mONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
             this.mONHOCTableAdapter.FillByMASV(this.tN_CSDLPTDataSet.MONHOC, Program.maSV);
 
         }
@@ -83,9 +85,10 @@ namespace ThiTN
                         listView1.Visible = true;
 
                         while (reader.Read())
-                        {
+                        {  
                             maBD = reader.GetInt32(1);
                             time = reader.GetInt16(0);
+                            lb_ThoiGianHeader2.Text = time + " phút";
                             int hour = time / 60;
                             int minute = time % 60;
                             if (minute < 10)
@@ -159,7 +162,6 @@ namespace ThiTN
                                 D_NOIDUNG = reader.GetString(12),
                                 DAP_AN = reader.GetString(13)
                             };
-                            Console.WriteLine("Số TT: " + examQuestion.STT);
                             examQuestions.Add(examQuestion.STT, examQuestion);
                         }
                     }
@@ -167,9 +169,11 @@ namespace ThiTN
 
                 if (examQuestions.Count > 0)
                 {
-                    Console.WriteLine("Số câu hỏi: " + examQuestions.Count);
                     btn_batDau.Visible = lb_ThoiGian1.Visible = lb_ThoiGian2.Visible = true;
                     pn_CauHoi.Visible = true;
+                    lb_soCau2.Text = examQuestions.Count.ToString();
+                    lb_soCau1.Visible = lb_soCau2.Visible = true;
+                    lb_ThoiGianHeader1.Visible = lb_ThoiGianHeader2.Visible = true;
                 }
             }
         }
@@ -462,6 +466,7 @@ namespace ThiTN
             // sau khi nộp bài thì thoát form thi và bật lại form Thi
             this.Close();
             FrmThi frmThi = new FrmThi();
+            frmThi.MdiParent = Program.frmChinh;
             frmThi.Show();
         }
 

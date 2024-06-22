@@ -143,5 +143,33 @@ namespace ThiTN
             }
             else form.Activate();
         }
+
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form form = this.CheckExists(typeof(Frm_xemKQThiSV));
+            if (form == null)
+            {
+
+                Frm_xemKQThiSV frm_xemKQThiSV = new Frm_xemKQThiSV();
+                frm_xemKQThiSV.MdiParent = this;
+
+                frm_xemKQThiSV.Show();
+            }
+            else form.Activate();
+        }
+
+        private void btn_ThiThu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form form = this.CheckExists(typeof(Frm_ThiThu));
+            if (form == null)
+            {
+
+                Frm_ThiThu frm_ThiThu = new Frm_ThiThu();
+                frm_ThiThu.MdiParent = this;
+
+                frm_ThiThu.Show();
+            }
+            else form.Activate();
+        }
     }
 }

@@ -50,10 +50,10 @@
             this.btn_Xoa = new DevExpress.XtraBars.BarButtonItem();
             this.btn_Ghi = new DevExpress.XtraBars.BarButtonItem();
             this.btn_undo = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_redo = new DevExpress.XtraBars.BarButtonItem();
             this.btn_TaiLai = new DevExpress.XtraBars.BarButtonItem();
             this.btn_Huy = new DevExpress.XtraBars.BarButtonItem();
             this.btn_Thoat = new DevExpress.XtraBars.BarButtonItem();
-            this.btn_redo = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -305,9 +305,18 @@
             // 
             this.btn_undo.Enabled = false;
             this.btn_undo.Id = 5;
-            this.btn_undo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_PhucHoi.ImageOptions.Image")));
-            this.btn_undo.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_PhucHoi.ImageOptions.LargeImage")));
+            this.btn_undo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_undo.ImageOptions.Image")));
+            this.btn_undo.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_undo.ImageOptions.LargeImage")));
             this.btn_undo.Name = "btn_undo";
+            this.btn_undo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_undo_ItemClick);
+            // 
+            // btn_redo
+            // 
+            this.btn_redo.Id = 9;
+            this.btn_redo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_redo.ImageOptions.Image")));
+            this.btn_redo.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_redo.ImageOptions.LargeImage")));
+            this.btn_redo.Name = "btn_redo";
+            this.btn_redo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_redo_ItemClick);
             // 
             // btn_TaiLai
             // 
@@ -335,13 +344,7 @@
             this.btn_Thoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_Thoat.ImageOptions.Image")));
             this.btn_Thoat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_Thoat.ImageOptions.LargeImage")));
             this.btn_Thoat.Name = "btn_Thoat";
-            // 
-            // btn_redo
-            // 
-            this.btn_redo.Id = 9;
-            this.btn_redo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_redo.ImageOptions.Image")));
-            this.btn_redo.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_redo.ImageOptions.LargeImage")));
-            this.btn_redo.Name = "btn_redo";
+            this.btn_Thoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_Thoat_ItemClick);
             // 
             // bar3
             // 
