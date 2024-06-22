@@ -1257,14 +1257,8 @@ SELECT MABD, CAUHOI, DAP_AN, STT, A, B, C, D FROM CT_BAITHI WHERE (CAUHOI = @CAU
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-<<<<<<< HEAD
-      <msdata:Relationship name="FK_BODE_DANGKY_GIAOVIEN_DANGKY" msdata:parent="GIAOVIEN_DANGKY" msdata:child="BODE_DANGKY" msdata:parentkey="MAGVDK" msdata:childkey="MAGVDK" msprop:Generator_UserParentTable="GIAOVIEN_DANGKY" msprop:Generator_UserChildTable="BODE_DANGKY" msprop:Generator_RelationVarName="relationFK_BODE_DANGKY_GIAOVIEN_DANGKY" msprop:Generator_ChildPropName="GetBODE_DANGKYRows" msprop:Generator_ParentPropName="GIAOVIEN_DANGKYRow" msprop:Generator_UserRelationName="FK_BODE_DANGKY_GIAOVIEN_DANGKY" />
-      <msdata:Relationship name="FK_CT_BAITHI_BANGDIEM" msdata:parent="BANGDIEM" msdata:child="CT_BAITHI" msdata:parentkey="MABD" msdata:childkey="MABD" msprop:Generator_UserParentTable="BANGDIEM" msprop:Generator_UserChildTable="CT_BAITHI" msprop:Generator_RelationVarName="relationFK_CT_BAITHI_BANGDIEM" msprop:Generator_ChildPropName="GetCT_BAITHIRows" msprop:Generator_UserRelationName="FK_CT_BAITHI_BANGDIEM" msprop:Generator_ParentPropName="BANGDIEMRow" />
-      <msdata:Relationship name="FK_BANGDIEM_GIAOVIEN_DANGKY" msdata:parent="GIAOVIEN_DANGKY" msdata:child="BANGDIEM" msdata:parentkey="MAGVDK" msdata:childkey="MAGVDK" msprop:Generator_UserParentTable="GIAOVIEN_DANGKY" msprop:Generator_UserChildTable="BANGDIEM" msprop:Generator_RelationVarName="relationFK_BANGDIEM_GIAOVIEN_DANGKY" msprop:Generator_UserRelationName="FK_BANGDIEM_GIAOVIEN_DANGKY" msprop:Generator_ChildPropName="GetBANGDIEMRows" msprop:Generator_ParentPropName="GIAOVIEN_DANGKYRow" />
-=======
       <msdata:Relationship name="FK_CT_BAITHI_BANGDIEM" msdata:parent="BANGDIEM" msdata:child="CT_BAITHI" msdata:parentkey="MABD" msdata:childkey="MABD" msprop:Generator_UserParentTable="BANGDIEM" msprop:Generator_UserChildTable="CT_BAITHI" msprop:Generator_RelationVarName="relationFK_CT_BAITHI_BANGDIEM" msprop:Generator_ChildPropName="GetCT_BAITHIRows" msprop:Generator_UserRelationName="FK_CT_BAITHI_BANGDIEM" msprop:Generator_ParentPropName="BANGDIEMRow" />
       <msdata:Relationship name="FK_BODE_DANGKY_GIAOVIEN_DANGKY" msdata:parent="GIAOVIEN_DANGKY" msdata:child="BODE_DANGKY" msdata:parentkey="MAGVDK" msdata:childkey="MAGVDK" msprop:Generator_UserParentTable="GIAOVIEN_DANGKY" msprop:Generator_UserChildTable="BODE_DANGKY" msprop:Generator_RelationVarName="relationFK_BODE_DANGKY_GIAOVIEN_DANGKY" msprop:Generator_ChildPropName="GetBODE_DANGKYRows" msprop:Generator_ParentPropName="GIAOVIEN_DANGKYRow" msprop:Generator_UserRelationName="FK_BODE_DANGKY_GIAOVIEN_DANGKY" />
->>>>>>> df5352db4303b5f046be84e6165b1267013c9353
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

@@ -364,7 +364,7 @@
             this.gcGV.MainView = this.gridView1;
             this.gcGV.MenuManager = this.barManager1;
             this.gcGV.Name = "gcGV";
-            this.gcGV.Size = new System.Drawing.Size(968, 321);
+            this.gcGV.Size = new System.Drawing.Size(968, 176);
             this.gcGV.TabIndex = 9;
             this.gcGV.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -432,9 +432,9 @@
             this.panelControl2.Controls.Add(mAGVLabel);
             this.panelControl2.Controls.Add(this.txtMAGV);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(0, 414);
+            this.panelControl2.Location = new System.Drawing.Point(0, 269);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(968, 315);
+            this.panelControl2.Size = new System.Drawing.Size(968, 460);
             this.panelControl2.TabIndex = 10;
             this.panelControl2.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl2_Paint);
             // 
