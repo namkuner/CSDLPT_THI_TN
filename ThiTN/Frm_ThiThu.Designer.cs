@@ -1,6 +1,6 @@
 ﻿namespace ThiTN
 {
-    partial class FrmThi
+    partial class Frm_ThiThu
     {
         /// <summary>
         /// Required designer variable.
@@ -29,28 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label mALOPLabel;
-            System.Windows.Forms.Label tENLOPLabel;
             System.Windows.Forms.Label tENMHLabel;
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tENLOPTextBox = new System.Windows.Forms.TextBox();
+            System.Windows.Forms.Label tENLOPLabel;
+            this.gb_BaiThi = new System.Windows.Forms.GroupBox();
+            this.cbb_LOP = new System.Windows.Forms.ComboBox();
             this.lOPBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tN_CSDLPTDataSet = new ThiTN.TN_CSDLPTDataSet();
-            this.mALOPTextBox = new System.Windows.Forms.TextBox();
-            this.tb_hoTen = new System.Windows.Forms.TextBox();
-            this.tb_maSV = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.gb_BaiThi = new System.Windows.Forms.GroupBox();
+            this.ccb_MonHoc = new System.Windows.Forms.ComboBox();
+            this.mONHOCBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btn_TimDeThi = new System.Windows.Forms.Button();
             this.se_Lan = new DevExpress.XtraEditors.SpinEdit();
             this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.dtp_NgayThi = new System.Windows.Forms.DateTimePicker();
-            this.ccb_MonHoc = new System.Windows.Forms.ComboBox();
-            this.mONHOCBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.mONHOCTableAdapter = new ThiTN.TN_CSDLPTDataSetTableAdapters.MONHOCTableAdapter();
-            this.tableAdapterManager = new ThiTN.TN_CSDLPTDataSetTableAdapters.TableAdapterManager();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lb_ThoiGian2 = new System.Windows.Forms.Label();
             this.lb_ThoiGian1 = new System.Windows.Forms.Label();
@@ -74,45 +63,27 @@
             this.tb_CAUHOI = new System.Windows.Forms.TextBox();
             this.lb_stt = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lOPTableAdapter = new ThiTN.TN_CSDLPTDataSetTableAdapters.LOPTableAdapter();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.listView1 = new System.Windows.Forms.ListView();
             this.col_CauHoi = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.col_DapAn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lb_ThoiGianHeader2 = new System.Windows.Forms.Label();
-            this.lb_ThoiGianHeader1 = new System.Windows.Forms.Label();
-            this.lb_soCau2 = new System.Windows.Forms.Label();
+            this.mONHOCTableAdapter = new ThiTN.TN_CSDLPTDataSetTableAdapters.MONHOCTableAdapter();
+            this.tableAdapterManager = new ThiTN.TN_CSDLPTDataSetTableAdapters.TableAdapterManager();
+            this.lOPTableAdapter = new ThiTN.TN_CSDLPTDataSetTableAdapters.LOPTableAdapter();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lb_soCau1 = new System.Windows.Forms.Label();
-            mALOPLabel = new System.Windows.Forms.Label();
-            tENLOPLabel = new System.Windows.Forms.Label();
+            this.lb_soCau2 = new System.Windows.Forms.Label();
+            this.lb_ThoiGianHeader1 = new System.Windows.Forms.Label();
+            this.lb_ThoiGianHeader2 = new System.Windows.Forms.Label();
             tENMHLabel = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            tENLOPLabel = new System.Windows.Forms.Label();
+            this.gb_BaiThi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lOPBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tN_CSDLPTDataSet)).BeginInit();
-            this.gb_BaiThi.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.se_Lan.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mONHOCBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.se_Lan.Properties)).BeginInit();
             this.panel1.SuspendLayout();
             this.pn_CauHoi.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // mALOPLabel
-            // 
-            mALOPLabel.AutoSize = true;
-            mALOPLabel.Location = new System.Drawing.Point(36, 34);
-            mALOPLabel.Name = "mALOPLabel";
-            mALOPLabel.Size = new System.Drawing.Size(55, 16);
-            mALOPLabel.TabIndex = 7;
-            mALOPLabel.Text = "Mã Lớp:";
-            // 
-            // tENLOPLabel
-            // 
-            tENLOPLabel.AutoSize = true;
-            tENLOPLabel.Location = new System.Drawing.Point(28, 67);
-            tENLOPLabel.Name = "tENLOPLabel";
-            tENLOPLabel.Size = new System.Drawing.Size(60, 16);
-            tENLOPLabel.TabIndex = 8;
-            tENLOPLabel.Text = "Tên Lớp:";
             // 
             // tENMHLabel
             // 
@@ -123,31 +94,46 @@
             tENMHLabel.TabIndex = 0;
             tENMHLabel.Text = "Tên MH:";
             // 
-            // groupBox1
+            // tENLOPLabel
             // 
-            this.groupBox1.Controls.Add(tENLOPLabel);
-            this.groupBox1.Controls.Add(this.tENLOPTextBox);
-            this.groupBox1.Controls.Add(mALOPLabel);
-            this.groupBox1.Controls.Add(this.mALOPTextBox);
-            this.groupBox1.Controls.Add(this.tb_hoTen);
-            this.groupBox1.Controls.Add(this.tb_maSV);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(824, 113);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Thông Tin Sinh Viên";
+            tENLOPLabel.AutoSize = true;
+            tENLOPLabel.Location = new System.Drawing.Point(39, 75);
+            tENLOPLabel.Name = "tENLOPLabel";
+            tENLOPLabel.Size = new System.Drawing.Size(60, 16);
+            tENLOPLabel.TabIndex = 7;
+            tENLOPLabel.Text = "Tên Lớp:";
             // 
-            // tENLOPTextBox
+            // gb_BaiThi
             // 
-            this.tENLOPTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.lOPBindingSource, "TENLOP", true));
-            this.tENLOPTextBox.Enabled = false;
-            this.tENLOPTextBox.Location = new System.Drawing.Point(112, 64);
-            this.tENLOPTextBox.Name = "tENLOPTextBox";
-            this.tENLOPTextBox.Size = new System.Drawing.Size(336, 22);
-            this.tENLOPTextBox.TabIndex = 9;
+            this.gb_BaiThi.Controls.Add(this.lb_ThoiGianHeader2);
+            this.gb_BaiThi.Controls.Add(this.lb_ThoiGianHeader1);
+            this.gb_BaiThi.Controls.Add(this.lb_soCau2);
+            this.gb_BaiThi.Controls.Add(this.lb_soCau1);
+            this.gb_BaiThi.Controls.Add(tENLOPLabel);
+            this.gb_BaiThi.Controls.Add(this.cbb_LOP);
+            this.gb_BaiThi.Controls.Add(this.ccb_MonHoc);
+            this.gb_BaiThi.Controls.Add(this.btn_TimDeThi);
+            this.gb_BaiThi.Controls.Add(this.se_Lan);
+            this.gb_BaiThi.Controls.Add(this.label6);
+            this.gb_BaiThi.Controls.Add(tENMHLabel);
+            this.gb_BaiThi.Location = new System.Drawing.Point(12, 12);
+            this.gb_BaiThi.Name = "gb_BaiThi";
+            this.gb_BaiThi.Size = new System.Drawing.Size(1225, 130);
+            this.gb_BaiThi.TabIndex = 2;
+            this.gb_BaiThi.TabStop = false;
+            this.gb_BaiThi.Text = "Bài Thi";
+            // 
+            // cbb_LOP
+            // 
+            this.cbb_LOP.DataSource = this.lOPBindingSource;
+            this.cbb_LOP.DisplayMember = "TENLOP";
+            this.cbb_LOP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbb_LOP.FormattingEnabled = true;
+            this.cbb_LOP.Location = new System.Drawing.Point(117, 72);
+            this.cbb_LOP.Name = "cbb_LOP";
+            this.cbb_LOP.Size = new System.Drawing.Size(265, 24);
+            this.cbb_LOP.TabIndex = 8;
+            this.cbb_LOP.ValueMember = "MALOP";
             // 
             // lOPBindingSource
             // 
@@ -159,72 +145,26 @@
             this.tN_CSDLPTDataSet.DataSetName = "TN_CSDLPTDataSet";
             this.tN_CSDLPTDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // mALOPTextBox
+            // ccb_MonHoc
             // 
-            this.mALOPTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.lOPBindingSource, "MALOP", true));
-            this.mALOPTextBox.Enabled = false;
-            this.mALOPTextBox.Location = new System.Drawing.Point(112, 33);
-            this.mALOPTextBox.Name = "mALOPTextBox";
-            this.mALOPTextBox.Size = new System.Drawing.Size(336, 22);
-            this.mALOPTextBox.TabIndex = 8;
+            this.ccb_MonHoc.DataSource = this.mONHOCBindingSource;
+            this.ccb_MonHoc.DisplayMember = "TENMH";
+            this.ccb_MonHoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ccb_MonHoc.FormattingEnabled = true;
+            this.ccb_MonHoc.Location = new System.Drawing.Point(117, 33);
+            this.ccb_MonHoc.Name = "ccb_MonHoc";
+            this.ccb_MonHoc.Size = new System.Drawing.Size(265, 24);
+            this.ccb_MonHoc.TabIndex = 7;
+            this.ccb_MonHoc.ValueMember = "MAMH";
             // 
-            // tb_hoTen
+            // mONHOCBindingSource
             // 
-            this.tb_hoTen.Enabled = false;
-            this.tb_hoTen.Location = new System.Drawing.Point(545, 66);
-            this.tb_hoTen.Name = "tb_hoTen";
-            this.tb_hoTen.Size = new System.Drawing.Size(259, 22);
-            this.tb_hoTen.TabIndex = 7;
-            // 
-            // tb_maSV
-            // 
-            this.tb_maSV.Enabled = false;
-            this.tb_maSV.Location = new System.Drawing.Point(545, 30);
-            this.tb_maSV.Name = "tb_maSV";
-            this.tb_maSV.Size = new System.Drawing.Size(259, 22);
-            this.tb_maSV.TabIndex = 5;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(482, 70);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 16);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Họ Tên:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(482, 33);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 16);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Mã SV:";
-            // 
-            // gb_BaiThi
-            // 
-            this.gb_BaiThi.Controls.Add(this.lb_ThoiGianHeader2);
-            this.gb_BaiThi.Controls.Add(this.lb_ThoiGianHeader1);
-            this.gb_BaiThi.Controls.Add(this.lb_soCau2);
-            this.gb_BaiThi.Controls.Add(this.lb_soCau1);
-            this.gb_BaiThi.Controls.Add(this.btn_TimDeThi);
-            this.gb_BaiThi.Controls.Add(this.se_Lan);
-            this.gb_BaiThi.Controls.Add(this.label6);
-            this.gb_BaiThi.Controls.Add(this.label5);
-            this.gb_BaiThi.Controls.Add(this.dtp_NgayThi);
-            this.gb_BaiThi.Controls.Add(tENMHLabel);
-            this.gb_BaiThi.Controls.Add(this.ccb_MonHoc);
-            this.gb_BaiThi.Location = new System.Drawing.Point(853, 12);
-            this.gb_BaiThi.Name = "gb_BaiThi";
-            this.gb_BaiThi.Size = new System.Drawing.Size(724, 113);
-            this.gb_BaiThi.TabIndex = 1;
-            this.gb_BaiThi.TabStop = false;
-            this.gb_BaiThi.Text = "Bài Thi";
+            this.mONHOCBindingSource.DataMember = "MONHOC";
+            this.mONHOCBindingSource.DataSource = this.tN_CSDLPTDataSet;
             // 
             // btn_TimDeThi
             // 
-            this.btn_TimDeThi.Location = new System.Drawing.Point(472, 69);
+            this.btn_TimDeThi.Location = new System.Drawing.Point(521, 75);
             this.btn_TimDeThi.Name = "btn_TimDeThi";
             this.btn_TimDeThi.Size = new System.Drawing.Size(75, 23);
             this.btn_TimDeThi.TabIndex = 6;
@@ -239,7 +179,7 @@
             0,
             0,
             0});
-            this.se_Lan.Location = new System.Drawing.Point(430, 32);
+            this.se_Lan.Location = new System.Drawing.Point(575, 32);
             this.se_Lan.Name = "se_Lan";
             this.se_Lan.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -249,66 +189,11 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(373, 36);
+            this.label6.Location = new System.Drawing.Point(518, 36);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(32, 16);
             this.label6.TabIndex = 4;
             this.label6.Text = "Lần:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(33, 72);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 16);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Ngày Thi:";
-            // 
-            // dtp_NgayThi
-            // 
-            this.dtp_NgayThi.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_NgayThi.Location = new System.Drawing.Point(117, 72);
-            this.dtp_NgayThi.Name = "dtp_NgayThi";
-            this.dtp_NgayThi.Size = new System.Drawing.Size(214, 22);
-            this.dtp_NgayThi.TabIndex = 2;
-            this.dtp_NgayThi.Value = new System.DateTime(2024, 6, 18, 14, 50, 43, 0);
-            // 
-            // ccb_MonHoc
-            // 
-            this.ccb_MonHoc.DataSource = this.mONHOCBindingSource;
-            this.ccb_MonHoc.DisplayMember = "TENMH";
-            this.ccb_MonHoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ccb_MonHoc.FormattingEnabled = true;
-            this.ccb_MonHoc.Location = new System.Drawing.Point(117, 31);
-            this.ccb_MonHoc.Name = "ccb_MonHoc";
-            this.ccb_MonHoc.Size = new System.Drawing.Size(214, 24);
-            this.ccb_MonHoc.TabIndex = 1;
-            this.ccb_MonHoc.ValueMember = "MAMH";
-            // 
-            // mONHOCBindingSource
-            // 
-            this.mONHOCBindingSource.DataMember = "MONHOC";
-            this.mONHOCBindingSource.DataSource = this.tN_CSDLPTDataSet;
-            // 
-            // mONHOCTableAdapter
-            // 
-            this.mONHOCTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.BANGDIEMTableAdapter = null;
-            this.tableAdapterManager.BODE_DANGKYTableAdapter = null;
-            this.tableAdapterManager.BODETableAdapter = null;
-            this.tableAdapterManager.COSOTableAdapter = null;
-            this.tableAdapterManager.CT_BAITHITableAdapter = null;
-            this.tableAdapterManager.GIAOVIEN_DANGKYTableAdapter = null;
-            this.tableAdapterManager.GIAOVIENTableAdapter = null;
-            this.tableAdapterManager.KHOATableAdapter = null;
-            this.tableAdapterManager.LOPTableAdapter = null;
-            this.tableAdapterManager.MONHOCTableAdapter = this.mONHOCTableAdapter;
-            this.tableAdapterManager.SINHVIENTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = ThiTN.TN_CSDLPTDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // panel1
             // 
@@ -316,10 +201,10 @@
             this.panel1.Controls.Add(this.lb_ThoiGian1);
             this.panel1.Controls.Add(this.btn_NopBai);
             this.panel1.Controls.Add(this.btn_batDau);
-            this.panel1.Location = new System.Drawing.Point(9, 176);
+            this.panel1.Location = new System.Drawing.Point(12, 177);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1568, 81);
-            this.panel1.TabIndex = 2;
+            this.panel1.TabIndex = 3;
             // 
             // lb_ThoiGian2
             // 
@@ -386,10 +271,10 @@
             this.pn_CauHoi.Controls.Add(this.tb_CAUHOI);
             this.pn_CauHoi.Controls.Add(this.lb_stt);
             this.pn_CauHoi.Controls.Add(this.label1);
-            this.pn_CauHoi.Location = new System.Drawing.Point(12, 277);
+            this.pn_CauHoi.Location = new System.Drawing.Point(12, 284);
             this.pn_CauHoi.Name = "pn_CauHoi";
             this.pn_CauHoi.Size = new System.Drawing.Size(1410, 472);
-            this.pn_CauHoi.TabIndex = 3;
+            this.pn_CauHoi.TabIndex = 4;
             this.pn_CauHoi.Visible = false;
             // 
             // radio_D
@@ -549,15 +434,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Câu Số:";
             // 
-            // lOPTableAdapter
-            // 
-            this.lOPTableAdapter.ClearBeforeFill = true;
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -566,10 +442,10 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(1452, 277);
+            this.listView1.Location = new System.Drawing.Point(1449, 284);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(131, 472);
-            this.listView1.TabIndex = 4;
+            this.listView1.TabIndex = 5;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.Visible = false;
@@ -583,69 +459,94 @@
             // 
             this.col_DapAn.Text = "Đáp Án";
             // 
-            // lb_ThoiGianHeader2
+            // mONHOCTableAdapter
             // 
-            this.lb_ThoiGianHeader2.AutoSize = true;
-            this.lb_ThoiGianHeader2.Location = new System.Drawing.Point(654, 75);
-            this.lb_ThoiGianHeader2.Name = "lb_ThoiGianHeader2";
-            this.lb_ThoiGianHeader2.Size = new System.Drawing.Size(57, 16);
-            this.lb_ThoiGianHeader2.TabIndex = 16;
-            this.lb_ThoiGianHeader2.Text = "100 Phút";
-            this.lb_ThoiGianHeader2.Visible = false;
+            this.mONHOCTableAdapter.ClearBeforeFill = true;
             // 
-            // lb_ThoiGianHeader1
+            // tableAdapterManager
             // 
-            this.lb_ThoiGianHeader1.AutoSize = true;
-            this.lb_ThoiGianHeader1.Location = new System.Drawing.Point(580, 75);
-            this.lb_ThoiGianHeader1.Name = "lb_ThoiGianHeader1";
-            this.lb_ThoiGianHeader1.Size = new System.Drawing.Size(68, 16);
-            this.lb_ThoiGianHeader1.TabIndex = 15;
-            this.lb_ThoiGianHeader1.Text = "Thời Gian:";
-            this.lb_ThoiGianHeader1.Visible = false;
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.BANGDIEMTableAdapter = null;
+            this.tableAdapterManager.BODE_DANGKYTableAdapter = null;
+            this.tableAdapterManager.BODETableAdapter = null;
+            this.tableAdapterManager.COSOTableAdapter = null;
+            this.tableAdapterManager.CT_BAITHITableAdapter = null;
+            this.tableAdapterManager.GIAOVIEN_DANGKYTableAdapter = null;
+            this.tableAdapterManager.GIAOVIENTableAdapter = null;
+            this.tableAdapterManager.KHOATableAdapter = null;
+            this.tableAdapterManager.LOPTableAdapter = null;
+            this.tableAdapterManager.MONHOCTableAdapter = this.mONHOCTableAdapter;
+            this.tableAdapterManager.SINHVIENTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = ThiTN.TN_CSDLPTDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // lb_soCau2
+            // lOPTableAdapter
             // 
-            this.lb_soCau2.AutoSize = true;
-            this.lb_soCau2.Location = new System.Drawing.Point(641, 34);
-            this.lb_soCau2.Name = "lb_soCau2";
-            this.lb_soCau2.Size = new System.Drawing.Size(28, 16);
-            this.lb_soCau2.TabIndex = 14;
-            this.lb_soCau2.Text = "100";
-            this.lb_soCau2.Visible = false;
+            this.lOPTableAdapter.ClearBeforeFill = true;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
             // 
             // lb_soCau1
             // 
             this.lb_soCau1.AutoSize = true;
-            this.lb_soCau1.Location = new System.Drawing.Point(580, 34);
+            this.lb_soCau1.Location = new System.Drawing.Point(800, 34);
             this.lb_soCau1.Name = "lb_soCau1";
             this.lb_soCau1.Size = new System.Drawing.Size(54, 16);
-            this.lb_soCau1.TabIndex = 13;
+            this.lb_soCau1.TabIndex = 9;
             this.lb_soCau1.Text = "Số Câu:";
             this.lb_soCau1.Visible = false;
             // 
-            // FrmThi
+            // lb_soCau2
+            // 
+            this.lb_soCau2.AutoSize = true;
+            this.lb_soCau2.Location = new System.Drawing.Point(861, 34);
+            this.lb_soCau2.Name = "lb_soCau2";
+            this.lb_soCau2.Size = new System.Drawing.Size(28, 16);
+            this.lb_soCau2.TabIndex = 10;
+            this.lb_soCau2.Text = "100";
+            this.lb_soCau2.Visible = false;
+            // 
+            // lb_ThoiGianHeader1
+            // 
+            this.lb_ThoiGianHeader1.AutoSize = true;
+            this.lb_ThoiGianHeader1.Location = new System.Drawing.Point(800, 75);
+            this.lb_ThoiGianHeader1.Name = "lb_ThoiGianHeader1";
+            this.lb_ThoiGianHeader1.Size = new System.Drawing.Size(68, 16);
+            this.lb_ThoiGianHeader1.TabIndex = 11;
+            this.lb_ThoiGianHeader1.Text = "Thời Gian:";
+            this.lb_ThoiGianHeader1.Visible = false;
+            // 
+            // lb_ThoiGianHeader2
+            // 
+            this.lb_ThoiGianHeader2.AutoSize = true;
+            this.lb_ThoiGianHeader2.Location = new System.Drawing.Point(874, 75);
+            this.lb_ThoiGianHeader2.Name = "lb_ThoiGianHeader2";
+            this.lb_ThoiGianHeader2.Size = new System.Drawing.Size(57, 16);
+            this.lb_ThoiGianHeader2.TabIndex = 12;
+            this.lb_ThoiGianHeader2.Text = "100 Phút";
+            this.lb_ThoiGianHeader2.Visible = false;
+            // 
+            // Frm_ThiThu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1788, 754);
+            this.ClientSize = new System.Drawing.Size(1823, 768);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.pn_CauHoi);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.gb_BaiThi);
-            this.Controls.Add(this.groupBox1);
-            this.Name = "FrmThi";
-            this.Text = "FrmThi";
+            this.Name = "Frm_ThiThu";
+            this.Text = "Frm_ThiThu";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmThi_FormClosing_1);
-            this.Load += new System.EventHandler(this.FrmThi_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lOPBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tN_CSDLPTDataSet)).EndInit();
+            this.Load += new System.EventHandler(this.Frm_ThiThu_Load);
             this.gb_BaiThi.ResumeLayout(false);
             this.gb_BaiThi.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.se_Lan.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lOPBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tN_CSDLPTDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mONHOCBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.se_Lan.Properties)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.pn_CauHoi.ResumeLayout(false);
@@ -656,35 +557,22 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox gb_BaiThi;
-        private System.Windows.Forms.TextBox tb_hoTen;
-        private System.Windows.Forms.TextBox tb_maSV;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private TN_CSDLPTDataSet tN_CSDLPTDataSet;
-        private System.Windows.Forms.BindingSource mONHOCBindingSource;
-        private TN_CSDLPTDataSetTableAdapters.MONHOCTableAdapter mONHOCTableAdapter;
-        private TN_CSDLPTDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.Button btn_TimDeThi;
         private DevExpress.XtraEditors.SpinEdit se_Lan;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker dtp_NgayThi;
-        private System.Windows.Forms.Button btn_TimDeThi;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lb_ThoiGian2;
         private System.Windows.Forms.Label lb_ThoiGian1;
         private System.Windows.Forms.Button btn_NopBai;
         private System.Windows.Forms.Button btn_batDau;
         private System.Windows.Forms.Panel pn_CauHoi;
-        private System.Windows.Forms.BindingSource lOPBindingSource;
-        private TN_CSDLPTDataSetTableAdapters.LOPTableAdapter lOPTableAdapter;
-        private System.Windows.Forms.TextBox tENLOPTextBox;
-        private System.Windows.Forms.TextBox mALOPTextBox;
-        private System.Windows.Forms.ComboBox ccb_MonHoc;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Label lb_stt;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RadioButton radio_D;
+        private System.Windows.Forms.RadioButton radio_B;
+        private System.Windows.Forms.RadioButton radio_C;
+        private System.Windows.Forms.RadioButton radio_A;
+        private System.Windows.Forms.Button btn_tiep;
+        private System.Windows.Forms.Button btn_truoc;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
@@ -694,15 +582,20 @@
         private System.Windows.Forms.TextBox tb_B;
         private System.Windows.Forms.TextBox tb_A;
         private System.Windows.Forms.TextBox tb_CAUHOI;
-        private System.Windows.Forms.Button btn_tiep;
-        private System.Windows.Forms.Button btn_truoc;
-        private System.Windows.Forms.RadioButton radio_D;
-        private System.Windows.Forms.RadioButton radio_B;
-        private System.Windows.Forms.RadioButton radio_C;
-        private System.Windows.Forms.RadioButton radio_A;
+        private System.Windows.Forms.Label lb_stt;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader col_CauHoi;
         private System.Windows.Forms.ColumnHeader col_DapAn;
+        private TN_CSDLPTDataSet tN_CSDLPTDataSet;
+        private System.Windows.Forms.BindingSource mONHOCBindingSource;
+        private TN_CSDLPTDataSetTableAdapters.MONHOCTableAdapter mONHOCTableAdapter;
+        private TN_CSDLPTDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.ComboBox ccb_MonHoc;
+        private System.Windows.Forms.BindingSource lOPBindingSource;
+        private TN_CSDLPTDataSetTableAdapters.LOPTableAdapter lOPTableAdapter;
+        private System.Windows.Forms.ComboBox cbb_LOP;
+        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lb_ThoiGianHeader2;
         private System.Windows.Forms.Label lb_ThoiGianHeader1;
         private System.Windows.Forms.Label lb_soCau2;

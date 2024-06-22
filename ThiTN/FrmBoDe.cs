@@ -11,6 +11,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ThiTN.Model;
+
 
 namespace ThiTN
 {
@@ -70,10 +72,10 @@ namespace ThiTN
             this.MONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
             this.MONHOCTableAdapter.Fill(this.TN_CSDLPTDataSet.MONHOC);
 
-            if (Program.mGroup.Equals("GiangVien") || Program.mGroup.Equals("CoSo"))
+            if (Program.mGroup.Equals("Giangvien") || Program.mGroup.Equals("CoSo"))
             {
                 btn_Them.Enabled = btn_Sua.Enabled = btn_Xoa.Enabled = true;
-                btn_Ghi.Enabled = btn_Huy.Enabled = btn_PhucHoi.Enabled = false;
+                btn_Ghi.Enabled = btn_Huy.Enabled = btn_undo.Enabled = btn_redo.Enabled = false;
                 this.BODETableAdapter.Connection.ConnectionString = Program.connstr;
                 this.BODETableAdapter.FillByGV(this.TN_CSDLPTDataSet.BODE, Program.username);
                 getMonHoc();
@@ -83,7 +85,7 @@ namespace ThiTN
                 this.BODETableAdapter.Connection.ConnectionString = Program.connstr;
                 this.BODETableAdapter.Fill(this.TN_CSDLPTDataSet.BODE);
                 btn_Them.Enabled = btn_Sua.Enabled = btn_Xoa.Enabled
-                   = btn_Ghi.Enabled = btn_PhucHoi.Enabled = false;
+                   = btn_Ghi.Enabled = btn_undo.Enabled = false;
             }
             setEnableEditCauHoi(false);
         }
@@ -105,7 +107,7 @@ namespace ThiTN
             {
                 int index = ccb_tenMonHoc.SelectedIndex;
                 cbbTenMonHoc1.SelectedIndex = index;
-                if (Program.mGroup.Equals("GiangVien") || Program.mGroup.Equals("CoSo"))
+                if (Program.mGroup.Equals("Giangvien") || Program.mGroup.Equals("CoSo"))
                 {
                     try
                     {
@@ -202,6 +204,19 @@ namespace ThiTN
         {
             try
             {
+                var state = new QuestionState(
+                    (int)se_MaCauHoi.Value,
+                    te_MAMH.Text,
+                    cbb_TrinhDo.Text,
+                    tb_NOIDUNG.Text,
+                    tb_A.Text,
+                    tb_B.Text,
+                    tb_C.Text,
+                    tb_D.Text,
+                    ccb_DapAn.Text,
+                    Program.username
+                );
+
                 bdsBoDe.EndEdit();
                 bdsBoDe.ResetCurrentItem();
                 this.BODETableAdapter.Insert(
@@ -220,6 +235,7 @@ namespace ThiTN
                 BODEGridControl.Enabled = true;
                 ccb_tenMonHoc.Enabled = true;
                 setEnableEditCauHoi(false);
+                PushToUndoStack(new ActionModel(ActionModel.ActionType.Add, state));
             }
             catch (Exception ex)
             {
@@ -232,6 +248,8 @@ namespace ThiTN
         {
             try
             {
+                
+
                 bdsBoDe.EndEdit();
                 bdsBoDe.ResetCurrentItem();
                 this.BODETableAdapter.Update(this.TN_CSDLPTDataSet.BODE);
@@ -239,6 +257,7 @@ namespace ThiTN
                 BODEGridControl.Enabled = true;
                 ccb_tenMonHoc.Enabled = true;
                 setEnableEditCauHoi(false);
+
             }
             catch (Exception ex)
             {
@@ -325,9 +344,13 @@ namespace ThiTN
         private void btn_Huy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             btn_Xoa.Enabled = btn_Sua.Enabled = btn_Them.Enabled = true;
-            btn_Ghi.Enabled = btn_Huy.Enabled = btn_PhucHoi.Enabled = false;
+            btn_Ghi.Enabled = btn_Huy.Enabled = btn_undo.Enabled = false;
             if (checkThem == true || checkSua == true || checkXoa == true)
             {
+                if (checkSua== true)
+                {
+                    undoStack.Pop();
+                }
                 // khi nhấn nút Hủy thì réset lại các giá trị
                 setEnableEditCauHoi(false);
                 setStatusButtonOption(true);
@@ -336,6 +359,8 @@ namespace ThiTN
                 bdsBoDe.ResetCurrentItem();
                 BODEGridControl.Enabled = true;
                 ccb_tenMonHoc.Enabled = true;
+                UpdateUndoRedoButtonStates();
+
             }
         }
 
@@ -363,6 +388,21 @@ namespace ThiTN
                     setEnableEditCauHoi(true);
                     se_MaCauHoi.Enabled = false;
                     checkSua = true;
+
+                    var oldState = new QuestionState(
+                    (int)se_MaCauHoi.Value,
+                    te_MAMH.Text,
+                    cbb_TrinhDo.Text,
+                    tb_NOIDUNG.Text,
+                    tb_A.Text,
+                    tb_B.Text,
+                    tb_C.Text,
+                    tb_D.Text,
+                    ccb_DapAn.Text,
+                    Program.username
+                    );
+                    var newState = oldState.Clone();
+                    PushToUndoStack(new ActionModel(ActionModel.ActionType.Edit, oldState));
                 }
                 else
                 {
@@ -441,8 +481,28 @@ namespace ThiTN
                 DataRowView selectedRow = (DataRowView)gridView1.GetFocusedRow();
                 if (selectedRow != null)
                 {
-                    // Kiểm tra xem câu hỏi đã được thi hay chưa
-                    // ...
+                    // Kiểm tra xem câu hỏi đã được thi hay chưa hoặc đã được đăng ký thi
+                    String queryCheck = "select Top 1 1 from CT_BAITHI as ctbt join BANGDIEM as bd on ctbt.MABD = bd.MABD where CAUHOI = " + selectedRow.Row["CAUHOI"];
+                    Program.myReader = Program.ExecSqlDataReader(queryCheck);
+                    if (Program.myReader == null)
+                    {
+                        Program.myReader.Close();
+                        Program.conn.Close();
+                        return;
+                    }
+                    else
+                    {
+                        if (Program.myReader.HasRows)
+                        {
+                            MessageBox.Show("Câu hỏi đã được thi hoặc đã được đăng ký thi nên không thể xóa", "Thông báo", MessageBoxButtons.OK);
+                            Program.myReader.Close();
+                            Program.conn.Close();
+                            return;
+                        }
+                        Program.myReader.Close();
+                        Program.conn.Close();
+                    }
+
 
                     // Nếu chưa thì xóa câu hỏi
                     DialogResult dr = MessageBox.Show("Bạn có chắc muốn xóa câu hỏi này?", "Thông báo", MessageBoxButtons.YesNo);
@@ -450,8 +510,22 @@ namespace ThiTN
                     {
                         try
                         {
+                            var state = new QuestionState(
+                                (int)selectedRow.Row["CAUHOI"],
+                                selectedRow.Row["MAMH"].ToString(),
+                                selectedRow.Row["TRINHDO"].ToString(),
+                                selectedRow.Row["NOIDUNG"].ToString(),
+                                selectedRow.Row["A"].ToString(),
+                                selectedRow.Row["B"].ToString(),
+                                selectedRow.Row["C"].ToString(),
+                                selectedRow.Row["D"].ToString(),
+                                selectedRow.Row["DAP_AN"].ToString(),
+                                Program.username
+                            );
+
                             bdsBoDe.RemoveCurrent();
                             this.BODETableAdapter.Update(this.TN_CSDLPTDataSet.BODE);
+                            PushToUndoStack(new ActionModel(ActionModel.ActionType.Delete, state));
                         }
                         catch (Exception ex)
                         {
@@ -471,6 +545,10 @@ namespace ThiTN
         {
             if (checkThem == true)
             {
+                undoStack.Clear();
+                redoStack.Clear();
+                UpdateUndoRedoButtonStates();
+
                 bdsBoDe.EndEdit();
                 bdsBoDe.ResetCurrentItem();
                 bdsBoDe.RemoveCurrent();
@@ -593,6 +671,177 @@ namespace ThiTN
                 Program.conn.Close();
             }
 
+        }
+        // Phần undo redo thêm/sửa/xóa câu hỏi
+        private Stack<ActionModel> undoStack = new Stack<ActionModel>();
+        private Stack<ActionModel> redoStack = new Stack<ActionModel>();
+        private void PushToUndoStack(ActionModel action)
+        {
+            undoStack.Push(action);
+            redoStack.Clear(); // Clear redo stack whenever a new action is performed
+            UpdateUndoRedoButtonStates();
+        }
+
+        private void UpdateUndoRedoButtonStates()
+        {
+            btn_undo.Enabled = undoStack.Count > 0;
+            btn_redo.Enabled = redoStack.Count > 0;
+        }
+        private void AddQuestion(QuestionState state)
+        {
+            bdsBoDe.AddNew();
+            se_MaCauHoi.Value = state.MaCauHoi;
+            te_MAMH.Text = state.MaMH;
+            cbb_TrinhDo.Text = state.TrinhDo;
+            tb_NOIDUNG.Text = state.NoiDung;
+            tb_A.Text = state.A;
+            tb_B.Text = state.B;
+            tb_C.Text = state.C;
+            tb_D.Text = state.D;
+            ccb_DapAn.Text = state.DapAn;
+            te_MAGV.Text = state.MaGV;
+
+            this.BODETableAdapter.Insert(
+                state.MaCauHoi,
+                state.MaMH,
+                state.TrinhDo,
+                state.NoiDung,
+                state.A,
+                state.B,
+                state.C,
+                state.D,
+                state.DapAn,
+                state.MaGV
+            );
+            UpdateUndoRedoButtonStates();
+        }
+
+        private void DeleteQuestion(int maCauHoi)
+        {
+            bdsBoDe.Position = bdsBoDe.Find("CAUHOI", maCauHoi);
+            bdsBoDe.RemoveCurrent();
+            this.BODETableAdapter.Update(this.TN_CSDLPTDataSet.BODE);
+            UpdateUndoRedoButtonStates();
+        }
+
+        private void EditQuestion(QuestionState state)
+        {
+            bdsBoDe.Position = bdsBoDe.Find("CAUHOI", state.MaCauHoi);
+            bdsBoDe.RemoveCurrent();
+            this.BODETableAdapter.Update(this.TN_CSDLPTDataSet.BODE);
+
+            bdsBoDe.AddNew();
+            se_MaCauHoi.Value = state.MaCauHoi;
+            te_MAMH.Text = state.MaMH;
+            cbb_TrinhDo.Text = state.TrinhDo;
+            tb_NOIDUNG.Text = state.NoiDung;
+            tb_A.Text = state.A;
+            tb_B.Text = state.B;
+            tb_C.Text = state.C;
+            tb_D.Text = state.D;
+            ccb_DapAn.Text = state.DapAn;
+            te_MAGV.Text = state.MaGV;
+
+            this.BODETableAdapter.Insert(
+                state.MaCauHoi,
+                state.MaMH,
+                state.TrinhDo,
+                state.NoiDung,
+                state.A,
+                state.B,
+                state.C,
+                state.D,
+                state.DapAn,
+                state.MaGV
+            );
+            UpdateUndoRedoButtonStates();
+        }
+
+        private void Undo()
+        {
+            if (undoStack.Count > 0)
+            {
+                var action = undoStack.Pop();
+                switch (action.Type)
+                {
+                    case ActionModel.ActionType.Add:
+                        DeleteQuestion(action.State.MaCauHoi);
+                        redoStack.Push(new ActionModel(ActionModel.ActionType.Delete, action.State));
+                        break;
+                    case ActionModel.ActionType.Edit:
+                        var currentState = new QuestionState(
+                            (int)se_MaCauHoi.Value,
+                            te_MAMH.Text,
+                            cbb_TrinhDo.Text,
+                            tb_NOIDUNG.Text,
+                            tb_A.Text,
+                            tb_B.Text,
+                            tb_C.Text,
+                            tb_D.Text,
+                            ccb_DapAn.Text,
+                            Program.username
+                        );
+                        EditQuestion(action.State);
+                        redoStack.Push(new ActionModel(ActionModel.ActionType.Edit, currentState));
+                        break;
+                    case ActionModel.ActionType.Delete:
+                        AddQuestion(action.State);
+                        redoStack.Push(new ActionModel(ActionModel.ActionType.Add, action.State));
+                        break;
+                }
+                UpdateUndoRedoButtonStates();
+            }
+        }
+
+        private void Redo()
+        {
+            if (redoStack.Count > 0)
+            {
+                var action = redoStack.Pop();
+                switch (action.Type)
+                {
+                    case ActionModel.ActionType.Add:
+                        DeleteQuestion(action.State.MaCauHoi);
+                        undoStack.Push(new ActionModel(ActionModel.ActionType.Delete, action.State));
+                        break;
+                    case ActionModel.ActionType.Edit:
+                        var currentState = new QuestionState(
+                            (int)se_MaCauHoi.Value,
+                            te_MAMH.Text,
+                            cbb_TrinhDo.Text,
+                            tb_NOIDUNG.Text,
+                            tb_A.Text,
+                            tb_B.Text,
+                            tb_C.Text,
+                            tb_D.Text,
+                            ccb_DapAn.Text,
+                            Program.username
+                        );
+                        EditQuestion(action.State);
+                        undoStack.Push(new ActionModel(ActionModel.ActionType.Edit, currentState));
+                        break;
+                    case ActionModel.ActionType.Delete:
+                        AddQuestion(action.State);
+                        undoStack.Push(new ActionModel(ActionModel.ActionType.Add, action.State));
+                        break;
+                }
+                UpdateUndoRedoButtonStates();
+            }
+        }
+
+        private void btn_undo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Undo();
+        }
+
+        private void btn_redo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Redo();
+        }
+
+        private void btn_Thoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.Close();
         }
     }
 }

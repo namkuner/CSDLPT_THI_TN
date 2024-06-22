@@ -129,24 +129,47 @@
     <Compile Include="FrmThi.Designer.cs">
       <DependentUpon>FrmThi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_ThiThu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_ThiThu.Designer.cs">
+      <DependentUpon>Frm_ThiThu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_xemKQThiSV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_xemKQThiSV.Designer.cs">
+      <DependentUpon>Frm_xemKQThiSV.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\ActionModel.cs" />
+    <Compile Include="Model\BoDe.cs" />
+    <Compile Include="Model\ExamQuestion.cs" />
+    <Compile Include="Model\QuestionState.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TN_CSDLPTDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TN_CSDLPTDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="BangDiemReport.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="BangDiemReport.Designer.cs">
       <DependentUpon>BangDiemReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TN_CSDLPTDataSet.cs">
+      <DependentUpon>TN_CSDLPTDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TN_CSDLPTDataSet.Designer.cs">
+      <DependentUpon>TN_CSDLPTDataSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Xrpt_xemKQThiSV.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Xrpt_xemKQThiSV.Designer.cs">
+      <DependentUpon>Xrpt_xemKQThiSV.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="FrmBangDiemReport.resx">
       <DependentUpon>FrmBangDiemReport.cs</DependentUpon>
@@ -169,8 +192,15 @@
     <EmbeddedResource Include="FrmThi.resx">
       <DependentUpon>FrmThi.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_ThiThu.resx">
+      <DependentUpon>Frm_ThiThu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_xemKQThiSV.resx">
+      <DependentUpon>Frm_xemKQThiSV.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -185,6 +215,9 @@
     </Compile>
     <EmbeddedResource Include="BangDiemReport.resx">
       <DependentUpon>BangDiemReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xrpt_xemKQThiSV.resx">
+      <DependentUpon>Xrpt_xemKQThiSV.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="ConnectionString.config">
@@ -229,7 +262,7 @@
     </None>
     <None Include="TN_CSDLPTDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TN_CSDLPTDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>TN_CSDLPTDataSet1.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="TN_CSDLPTDataSet.xss">
