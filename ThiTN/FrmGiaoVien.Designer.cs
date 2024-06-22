@@ -303,6 +303,7 @@
             // 
             // cmbCoSoFrmGiaoVien
             // 
+            this.cmbCoSoFrmGiaoVien.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCoSoFrmGiaoVien.FormattingEnabled = true;
             this.cmbCoSoFrmGiaoVien.Location = new System.Drawing.Point(116, 27);
             this.cmbCoSoFrmGiaoVien.Name = "cmbCoSoFrmGiaoVien";
@@ -440,6 +441,7 @@
             // 
             // quyen
             // 
+            this.quyen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.quyen.FormattingEnabled = true;
             this.quyen.Location = new System.Drawing.Point(290, 163);
             this.quyen.Name = "quyen";
@@ -451,9 +453,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(243, 166);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 13);
+            this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 12;
-            this.label2.Text = "Quyền : ";
+            this.label2.Text = "Nhóm : ";
             // 
             // label1
             // 
@@ -478,6 +480,7 @@
             this.cmbMAKH.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bdsKhoa, "MAKH", true));
             this.cmbMAKH.DataSource = this.bdsKhoa;
             this.cmbMAKH.DisplayMember = "TENKH";
+            this.cmbMAKH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMAKH.FormattingEnabled = true;
             this.cmbMAKH.Location = new System.Drawing.Point(650, 80);
             this.cmbMAKH.Name = "cmbMAKH";

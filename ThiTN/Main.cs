@@ -143,5 +143,18 @@ namespace ThiTN
             }
             else form.Activate();
         }
+
+        private void frmBangDiem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form form = this.CheckExists(typeof(FrmBangDiemReport));
+            if (form == null)
+            {
+                FrmBangDiemReport frmBangDiemReport = new FrmBangDiemReport();
+                frmBangDiemReport.MdiParent = this;
+                frmBangDiemReport.Show();
+
+            }
+            else form.Activate();
+        }
     }
 }
