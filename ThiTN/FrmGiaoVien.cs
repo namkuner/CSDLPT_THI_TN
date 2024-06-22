@@ -45,22 +45,18 @@ namespace ThiTN
             // TODO: This line of code loads data into the 'dS1.GIAOVIEN' table. You can move, or remove it, as needed.
             this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
             this.gIAOVIENTableAdapter.Fill(this.dS1.GIAOVIEN);
-            this.gIAOVIENTableAdapter.Update(this.dS1.GIAOVIEN);
             
             // TODO: This line of code loads data into the 'dS1.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
             this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
             this.gIAOVIEN_DANGKYTableAdapter.Fill(this.dS1.GIAOVIEN_DANGKY);
-            this.gIAOVIEN_DANGKYTableAdapter.Update(this.dS1.GIAOVIEN_DANGKY);
             // TODO: This line of code loads data into the 'dS1.BODE' table. You can move, or remove it, as needed.
             this.bODETableAdapter.Connection.ConnectionString = Program.connstr;
 
             
             this.bODETableAdapter.Fill(this.dS1.BODE);
-            this.bODETableAdapter.Update(this.dS1.BODE);
             // TODO: This line of code loads data into the 'dS1.KHOA' table. You can move, or remove it, as needed.
             this.kHOATableAdapter.Connection.ConnectionString = Program.connstr;
             this.kHOATableAdapter.Fill(this.dS1.KHOA);
-            this.kHOATableAdapter.Update(this.dS1.KHOA);
             cmbCoSoFrmGiaoVien.DataSource = Program.bds_dspm;
             cmbCoSoFrmGiaoVien.DisplayMember = "TENCN";
             cmbCoSoFrmGiaoVien.ValueMember = "TENSERVER";
