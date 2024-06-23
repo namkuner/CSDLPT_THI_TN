@@ -117,11 +117,23 @@
     <Compile Include="FrmGiaovien_Dangky.Designer.cs">
       <DependentUpon>FrmGiaovien_Dangky.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmKhoaLop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKhoaLop.Designer.cs">
+      <DependentUpon>frmKhoaLop.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMonHoc.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmMonHoc.Designer.cs">
       <DependentUpon>FrmMonHoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSinhVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSinhVien.Designer.cs">
+      <DependentUpon>frmSinhVien.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmThi.cs">
       <SubType>Form</SubType>
@@ -186,8 +198,14 @@
     <EmbeddedResource Include="FrmGiaovien_Dangky.resx">
       <DependentUpon>FrmGiaovien_Dangky.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmKhoaLop.resx">
+      <DependentUpon>frmKhoaLop.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmMonHoc.resx">
       <DependentUpon>FrmMonHoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSinhVien.resx">
+      <DependentUpon>frmSinhVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmThi.resx">
       <DependentUpon>FrmThi.cs</DependentUpon>
