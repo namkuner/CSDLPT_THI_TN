@@ -146,11 +146,23 @@ namespace ThiTN
 
         private void barButtonItem1_ItemClick_2(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Form frm = this.CheckExists(typeof(frmKhoaLop2));
+            Form frm = this.CheckExists(typeof(frmKhoaLop));
             if (frm != null) frm.Activate();
             else
             {
-                frmKhoaLop2 f = new frmKhoaLop2();
+                frmKhoaLop f = new frmKhoaLop();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnSV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmSinhVien));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frmSinhVien f = new frmSinhVien();
                 f.MdiParent = this;
                 f.Show();
             }
