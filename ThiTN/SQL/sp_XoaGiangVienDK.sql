@@ -1,4 +1,4 @@
-﻿ALTER PROC sp_XoaGiangVienDK
+﻿CREATE PROC sp_XoaGiangVienDK
     @MAGVDK int
 AS
 BEGIN

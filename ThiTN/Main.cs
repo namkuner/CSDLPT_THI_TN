@@ -184,5 +184,17 @@ namespace ThiTN
             }
             else form.Activate();
         }
+
+        private void btnDangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+            this.Hide();
+            Program.frmDangNhap.ShowDialog();
+            Program.frmDangNhap.Show();
+            Program.frmDangNhap.Close();
+
+            
+
+        }
     }
 }
