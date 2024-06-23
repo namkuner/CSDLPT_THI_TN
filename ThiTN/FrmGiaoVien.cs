@@ -37,15 +37,60 @@ namespace ThiTN
             this.tableAdapterManager.UpdateAll(this.dS1);
 
         }
+        private void hienthi()
+        {
+            if (Program.mGroup == "Truong")
+            {
+                string cs = "CS" + (Program.mChinhanh + 1).ToString();
+                // TODO: This line of code loads data into the 'dS1.GIAOVIEN' table. You can move, or remove it, as needed.
+                this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.gIAOVIENTableAdapter.FillByCoSo(dS1.GIAOVIEN, cs);
+                cmbCoSoFrmGiaoVien.Enabled = true;
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = btnRefresh.Enabled = true;
+
+            }
+
+            else if (Program.mGroup == "CoSo")
+            {
+                // TODO: This line of code loads data into the 'dS1.GIAOVIEN' table. You can move, or remove it, as needed.
+                this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.gIAOVIENTableAdapter.FillByCoSoGV(dS1.GIAOVIEN, Program.username);
+
+                cmbCoSoFrmGiaoVien.Enabled = false;
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = btnRefresh.Enabled = true;
+            }
+            else if (Program.mGroup == "Giangvien")
+            {
+                // TODO: This line of code loads data into the 'dS1.GIAOVIEN' table. You can move, or remove it, as needed.
+                this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.gIAOVIENTableAdapter.FillByGV(dS1.GIAOVIEN, Program.username);
+                cmbCoSoFrmGiaoVien.Enabled = false;
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = btnRefresh.Enabled = true;
+            }
+            else
+            {
+                cmbCoSoFrmGiaoVien.Enabled = false;
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = btnRefresh.Enabled = false;
+
+            }
+        }
 
         private void FrmGiaoVien_Load(object sender, EventArgs e)
         {
 
             this.dS1.EnforceConstraints = false;
-            // TODO: This line of code loads data into the 'dS1.GIAOVIEN' table. You can move, or remove it, as needed.
-            this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.gIAOVIENTableAdapter.Fill(this.dS1.GIAOVIEN);
+
             
+
+            cmbCoSoFrmGiaoVien.DataSource = Program.bds_dspm;
+            cmbCoSoFrmGiaoVien.DisplayMember = "TENCN";
+            cmbCoSoFrmGiaoVien.ValueMember = "TENSERVER";
+            cmbCoSoFrmGiaoVien.SelectedIndex = Program.mChinhanh;
+            System.Console.Out.WriteLine(Program.mChinhanh);
+
+            this.gIAOVIEN_DANGKYTableAdapter.ClearBeforeFill = true;
+            hienthi();
+
             // TODO: This line of code loads data into the 'dS1.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
             this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
             this.gIAOVIEN_DANGKYTableAdapter.Fill(this.dS1.GIAOVIEN_DANGKY);
@@ -57,29 +102,6 @@ namespace ThiTN
             // TODO: This line of code loads data into the 'dS1.KHOA' table. You can move, or remove it, as needed.
             this.kHOATableAdapter.Connection.ConnectionString = Program.connstr;
             this.kHOATableAdapter.Fill(this.dS1.KHOA);
-            cmbCoSoFrmGiaoVien.DataSource = Program.bds_dspm;
-            cmbCoSoFrmGiaoVien.DisplayMember = "TENCN";
-            cmbCoSoFrmGiaoVien.ValueMember = "TENSERVER";
-            cmbCoSoFrmGiaoVien.SelectedIndex = Program.mChinhanh;
-            System.Console.Out.WriteLine(Program.mChinhanh);
-            if (Program.mGroup == "Truong")
-            {
-                cmbCoSoFrmGiaoVien.Enabled = true;
-                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = btnRefresh.Enabled = true;
-
-            }
-
-            else if (Program.mGroup == "CoSo")
-            {
-                cmbCoSoFrmGiaoVien.Enabled = false;
-                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = btnRefresh.Enabled = true;
-            }
-            else
-            {
-                cmbCoSoFrmGiaoVien.Enabled = false;
-                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnPhucHoi.Enabled = btnRefresh.Enabled = false;
-
-            }
 
         }
 
@@ -135,16 +157,23 @@ namespace ThiTN
             {
                 bdsGV.EndEdit();
                 bdsGV.ResetCurrentItem();
-                this.gIAOVIENTableAdapter.Update(this.dS1.GIAOVIEN);
-                this.gIAOVIENTableAdapter.Fill(this.dS1.GIAOVIEN);
+                this.gIAOVIENTableAdapter.Insert(
+                        txtMAGV.Text.Trim(),
+                        txtHo.Text.Trim(),
+                        txtTen.Text.Trim(),
+                        txtDiaChi.Text.Trim(),
+                                                                                              
+                        cmbMAKH.SelectedValue.ToString().Trim());
+
                 gcGV.Enabled = true;
                 panelControl2.Enabled = false;
                 btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnRefresh.Enabled = true;
                 btnGhi.Enabled = btnPhucHoi.Enabled = false;
                 String cauTruyVan =
-                   "EXEC sp_TaoTaiKhoan '" + this.txtMAGV + "' , '" + matKhau + "', '"
-                   + this.txtMAGV + "', '" + quyen + "'";
-
+                   "EXEC sp_TaoTaiKhoan '" + this.txtMAGV.Text.Trim() + "' , '" + matKhau.Text + "', '"
+                   + this.txtMAGV.Text.Trim() + "', '" + quyen.SelectedItem.ToString().Trim() + "'";
+                Console.WriteLine(cauTruyVan);
+                
                 SqlCommand sqlCommand = new SqlCommand(cauTruyVan, Program.conn);
                 try
                 {
@@ -155,8 +184,8 @@ namespace ThiTN
                     {
                         return;
                     }
-
-                    MessageBox.Show("Đăng kí tài khoản thành công\n\nTài khoản: " + txtMAGV + "\nMật khẩu: " + matKhau + "\n Mã Nhân Viên: " + matKhau + "\n Vai Trò: " + quyen, "Thông Báo", MessageBoxButtons.OK);
+                    hienthi();
+                    MessageBox.Show("Đăng kí tài khoản thành công\n\nTài khoản: " + this.txtMAGV.Text.Trim() + "\nMật khẩu: " + matKhau.Text + "\n Mã Nhân Viên: " + this.txtMAGV.Text.Trim() + "\n Vai Trò: " + quyen.SelectedItem.ToString().Trim(), "Thông Báo", MessageBoxButtons.OK);
                 }
                 catch (Exception ex)
                 {
@@ -203,11 +232,11 @@ namespace ThiTN
                 try
                 {
                     maGV = ((DataRowView)bdsGV[bdsGV.Position])["MAGV"].ToString();
-                    bdsGV.RemoveCurrent();
-                    this.gIAOVIENTableAdapter.Update(this.dS1.GIAOVIEN);
                     String cauTruyVan =
-                                "EXEC Xoa_Login '" + maGV +"' , '" +maGV +"'";
+                                "EXEC sp_XoaLoginVaGiaoVien '" + maGV +"' , '" +maGV +"'";
                     SqlCommand sqlCommand = new SqlCommand(cauTruyVan, Program.conn);
+                    
+                    hienthi();
                 }
                 catch (Exception ex)
                 {
@@ -217,6 +246,7 @@ namespace ThiTN
                     return;
                 }
             }
+            
         }
 
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

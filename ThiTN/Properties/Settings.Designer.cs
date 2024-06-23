@@ -26,17 +26,6 @@ namespace ThiTN.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=THI_TN;Initial Catalog=TN_CSDLPT;User ID=sa;Password=123456;TrustServ" +
-            "erCertificate=True")]
-        public string TN_CSDLPTConnectionString {
-            get {
-                return ((string)(this["TN_CSDLPTConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ADMIN\\SERVER1;Initial Catalog=TN_CSDLPT;User ID=sa;Password=123456;Tr" +
             "ustServerCertificate=True")]
         public string TN_CSDLPTConnectionString1 {
@@ -48,8 +37,19 @@ namespace ThiTN.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-OE056AS;Initial Catalog=TN_CSDLPT;Persist Security Info=True;" +
-            "User ID=sa;Password=123456;Encrypt=True;TrustServerCertificate=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ADMIN\\THI_TN;Initial Catalog=TN_CSDLPT;User ID=sa;Password=123456;Tru" +
+            "stServerCertificate=True")]
+        public string TN_CSDLPTConnectionString {
+            get {
+                return ((string)(this["TN_CSDLPTConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ADMIN\\SERVER1;Initial Catalog=TN_CSDLPT;Persist Security Info=True;Us" +
+            "er ID=sa;Password=123456;Encrypt=True;TrustServerCertificate=True")]
         public string TN_CSDLPTConnectionString2 {
             get {
                 return ((string)(this["TN_CSDLPTConnectionString2"]));
