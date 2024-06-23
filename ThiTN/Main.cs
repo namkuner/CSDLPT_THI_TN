@@ -143,5 +143,17 @@ namespace ThiTN
             }
             else form.Activate();
         }
+
+        private void barButtonItem1_ItemClick_2(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmKhoaLop2));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frmKhoaLop2 f = new frmKhoaLop2();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
     }
 }

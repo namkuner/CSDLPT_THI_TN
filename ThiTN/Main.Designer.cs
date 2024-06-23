@@ -49,6 +49,7 @@
             this.MAGV = new System.Windows.Forms.ToolStripStatusLabel();
             this.HOTEN = new System.Windows.Forms.ToolStripStatusLabel();
             this.NHOM = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnKhoa = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -64,10 +65,11 @@
             this.btnGV,
             this.btn_Giaovien_Dangky,
             this.btn_De,
-            this.btn_Thi});
+            this.btn_Thi,
+            this.btnKhoa});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.ribbonControl1.MaxItemId = 6;
+            this.ribbonControl1.MaxItemId = 7;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 385;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -137,6 +139,7 @@
             // 
             // ribbonPageGroup3
             // 
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnKhoa);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "KHOA";
             // 
@@ -201,7 +204,7 @@
             // MAGV
             // 
             this.MAGV.Name = "MAGV";
-            this.MAGV.Size = new System.Drawing.Size(26, 17);
+            this.MAGV.Size = new System.Drawing.Size(32, 20);
             this.MAGV.Text = "MA";
             // 
             // HOTEN
@@ -215,6 +218,14 @@
             this.NHOM.Name = "NHOM";
             this.NHOM.Size = new System.Drawing.Size(55, 20);
             this.NHOM.Text = "NHOM";
+            // 
+            // btnKhoa
+            // 
+            this.btnKhoa.Id = 6;
+            this.btnKhoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
+            this.btnKhoa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
+            this.btnKhoa.Name = "btnKhoa";
+            this.btnKhoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick_2);
             // 
             // Main
             // 
@@ -259,6 +270,7 @@
         private DevExpress.XtraBars.BarButtonItem btn_Giaovien_Dangky;
         private DevExpress.XtraBars.BarButtonItem btn_De;
         private DevExpress.XtraBars.BarButtonItem btn_Thi;
+        private DevExpress.XtraBars.BarButtonItem btnKhoa;
     }
 }
 
