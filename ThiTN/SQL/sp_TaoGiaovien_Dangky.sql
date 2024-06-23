@@ -1,5 +1,5 @@
 ﻿
-ALTER PROCEDURE sp_ThemGiaovienDangky
+CREATE PROCEDURE sp_ThemGiaovienDangky
 	@MAGV CHAR(8),
     @MALOP NVARCHAR(15),
     @MaMonHoc CHAR(5),

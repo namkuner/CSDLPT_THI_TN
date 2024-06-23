@@ -2,7 +2,7 @@ CREATE VIEW [dbo].[V_DS_PHANMANH]
 AS
 SELECT  TENCN=PUBS.description, TENSERVER= subscriber_server
    FROM dbo.sysmergepublications PUBS,  dbo.sysmergesubscriptions SUBS
-   WHERE PUBS.pubid= SUBS.PUBID  AND PUBS.publisher <> SUBS.subscriber_server
+   WHERE PUBS.pubid= SUBS.PUBID  AND PUBS.publisher <> SUBS.subscriber_server AND PUBS.description <> 'tracuu'
 
 SELECT * FROM V_DS_PHANMANH
 
