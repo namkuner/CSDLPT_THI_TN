@@ -265,5 +265,37 @@ namespace ThiTN
         {
 
         }
+
+        private void btnPhucHoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            // give code
+            bdsGV.CancelEdit();
+            if (btnThem.Enabled == false) bdsGV.Position = vitri;
+            gcGV.Enabled = true;
+            panelControl2.Enabled = false;
+            btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnRefresh.Enabled = true;
+            btnGhi.Enabled = btnPhucHoi.Enabled = false;
+
+
+        }
+
+        private void btnRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                hienthi();
+                bdsGV.Position = vitri;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi Refresh: " + ex.Message, "", MessageBoxButtons.OK);
+            }
+            
+        }
+
+        private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

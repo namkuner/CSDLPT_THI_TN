@@ -1,5 +1,5 @@
 ﻿
-ALTER PROCEDURE sp_LayCauHoi 
+CREATE PROCEDURE sp_LayCauHoi 
     @SoCau INT,
     @TrinhDo CHAR(1),
     @MaMonHoc CHAR(5),

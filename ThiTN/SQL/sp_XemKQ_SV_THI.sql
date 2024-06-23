@@ -8,7 +8,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-ALTER PROC [dbo].[sp_xemKQThiSV]
+CREATE PROC [dbo].[sp_xemKQThiSV]
 	@MASV char(8),
 	@MAMH char(5),
 	@LAN smallint
