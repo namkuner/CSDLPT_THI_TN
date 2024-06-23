@@ -40,20 +40,21 @@ BEGIN
 	PRINT 'Mã Giáo viên đk: ' + CAST(@MaGVDK AS VARCHAR(10))
 	DECLARE @SoCauLay INT
 	DECLARE @SoDong INT;
-	DECLARE @CauHoiDaThem TABLE (CauHoi INT);
+	CREATE TABLE #CauHoiDaThem (CauHoi INT);
 	IF @TrinhDo != 'C'
 	BEGIN
 		-- Lấy Câu thi ở cơ sở hiện tại
 		
-		INSERT INTO @CauHoiDaThem (CauHoi)
-		EXEC sp_LayCauHoi @SoCauThi, @TrinhDo, @MaMonHoc,@MaCoSo,1,@CauHoiDaThem
-		SELECT @SoDong = COUNT(*) FROM @CauHoiDaThem;
+		INSERT INTO #CauHoiDaThem (CauHoi)
+		EXEC sp_LayCauHoi @SoCauThi, @TrinhDo, @MaMonHoc,@MaCoSo,1
+		SELECT @SoDong = COUNT(*) FROM #CauHoiDaThem;
 		-- Nếu lấy đủ RETURN  
 		IF @SoDong = @SoCauThi --Trường hợp Lấy 100 câu thi, số lượng câu ở trình độ A,B là CS1[A,B] CS2[A,B]:  100,CS1[110,110],CS2[110,110] 
 		BEGIN
 			INSERT INTO BODE_DANGKY (CAUHOI, MAGVDK)
 			SELECT CauHoi, @MaGVDK
-			FROM @CauHoiDaThem;
+			FROM #CauHoiDaThem;
+			DROP TABLE #CauHoiDaThem;
 			COMMIT TRANSACTION
 			RETURN 0;
 		END
@@ -61,29 +62,31 @@ BEGIN
 		BEGIN
 			
 			SET @SoCauLay = @SoCauThi -@SoDong
-			INSERT INTO @CauHoiDaThem (CauHoi)
-			EXEC sp_LayCauHoi @SoCauLay, @TrinhDoThapHon, @MaMonHoc,@MaCoSo,1,@CauHoiDaThem
-			SELECT @SoDong = COUNT(*) FROM @CauHoiDaThem;
+			INSERT INTO #CauHoiDaThem 
+			EXEC sp_LayCauHoi @SoCauLay, @TrinhDoThapHon, @MaMonHoc,@MaCoSo,1
+			SELECT @SoDong = COUNT(*) FROM #CauHoiDaThem;
 			--Trường hợp lấy hết câu có trình độ thấp hơn nhưng vẫn không đủ bộ đề
 			IF @SoDong = @SoCauThi -- 100,CS1[80,110],CS2[110,110] 
 			BEGIN
 				INSERT INTO BODE_DANGKY (CAUHOI, MAGVDK)
 				SELECT CauHoi, @MaGVDK
-				FROM @CauHoiDaThem;
+				FROM #CauHoiDaThem;
+				DROP TABLE #CauHoiDaThem;
 				COMMIT TRANSACTION
 				RETURN 0;
 			END
 			ELSE
 			BEGIN
 				SET @SoCauLay = @SoCauThi -@SoDong
-				INSERT INTO @CauHoiDaThem (CauHoi)
-				EXEC sp_LayCauHoi @SoCauLay, @TrinhDo, @MaMonHoc,@MaCoSo,0,@CauHoiDaThem
-				SELECT @SoDong = COUNT(*) FROM @CauHoiDaThem;
+				INSERT INTO #CauHoiDaThem
+				EXEC sp_LayCauHoi @SoCauLay, @TrinhDo, @MaMonHoc,@MaCoSo,0
+				SELECT @SoDong = COUNT(*) FROM #CauHoiDaThem;
 				IF  @SoDong = @SoCauThi -- 100,CS1[80,10],CS2[10,110] 
 				BEGIN
 					INSERT INTO BODE_DANGKY (CAUHOI, MAGVDK)
 					SELECT CauHoi, @MaGVDK
-					FROM @CauHoiDaThem;
+					FROM #CauHoiDaThem;
+					DROP TABLE #CauHoiDaThem;
 					COMMIT TRANSACTION
 					RETURN 0; -- 80A CS1,10B CS1, 10A CS2 
 				END
@@ -91,20 +94,22 @@ BEGIN
 				ELSE
 				BEGIN
 					SET @SoCauLay = @SoCauThi -@SoDong
-					INSERT INTO @CauHoiDaThem (CauHoi)
-					EXEC sp_LayCauHoi @SoCauLay, @TrinhDoThapHon, @MaMonHoc,@MaCoSo,0,@CauHoiDaThem
-					SELECT @SoDong = COUNT(*) FROM @CauHoiDaThem;	
+					INSERT INTO #CauHoiDaThem 
+					EXEC sp_LayCauHoi @SoCauLay, @TrinhDoThapHon, @MaMonHoc,@MaCoSo,0
+					SELECT @SoDong = COUNT(*) FROM #CauHoiDaThem;	
 					IF @SoDong = @SoCauThi --100,CS1[80,10],CS2[5,110]
 					BEGIN
 						INSERT INTO BODE_DANGKY (CAUHOI, MAGVDK)
 						SELECT CauHoi, @MaGVDK
-						FROM @CauHoiDaThem;
+						FROM #CauHoiDaThem;
+						DROP TABLE #CauHoiDaThem;
 						COMMIT TRANSACTION
 						RETURN 0; -- 80A CS1,10B CS1, 5A CS2 , 5B CS2
 					END
 						
 					ELSE-- 100,CS1[80,10],CS2[5,3]
 					BEGIN
+						DROP TABLE #CauHoiDaThem;
 						ROLLBACK TRANSACTION
 						RAISERROR( 'Không thể tạo đề do số câu không đủ', 16, 1) --Không đủ 100 câu
 					END
@@ -117,7 +122,7 @@ BEGIN
 			DECLARE @tmp TABLE (CauHoi INT);
 			DECLARE @RowCount INT;
 			INSERT INTO @tmp (CauHoi)
-			EXEC sp_LayCauHoi @SoCauThi, @TrinhDo, @MaMonHoc,@MaCoSo,0,@CauHoiDaThem
+			EXEC sp_LayCauHoi @SoCauThi, @TrinhDo, @MaMonHoc,@MaCoSo,0
 			SELECT @RowCount = COUNT(*) FROM @tmp 
 
 			--Điều chú ý ở đây là CS1 không đủ thì  giờ qua CS2, 
@@ -128,35 +133,37 @@ BEGIN
 			BEGIN
 				
 				SET @SoCauLay = CEILING(0.7 * @SoCauThi) - @SoDong
-				INSERT INTO @CauHoiDaThem (CauHoi)
+				INSERT INTO #CauHoiDaThem 
 				SELECT TOP (@SoCauLay) CauHoi FROM @tmp
-				SELECT @SoDong = COUNT(*) FROM @CauHoiDaThem;
+				SELECT @SoDong = COUNT(*) FROM #CauHoiDaThem;
 				DELETE TOP (@SoCauLay) FROM @tmp
 
 				SET @SoCauLay = @SoCauThi - @SoDong
-				INSERT INTO @CauHoiDaThem (CauHoi)
-				EXEC sp_LayCauHoi @SoCauLay, @TrinhDoThapHon, @MaMonHoc,@MaCoSo,1,@CauHoiDaThem
-				SELECT @SoDong = COUNT(*) FROM @CauHoiDaThem;	
+				INSERT INTO #CauHoiDaThem 
+				EXEC sp_LayCauHoi @SoCauLay, @TrinhDoThapHon, @MaMonHoc,@MaCoSo,1
+				SELECT @SoDong = COUNT(*) FROM #CauHoiDaThem;	
 
 				IF @SoDong = @SoCauLay -- 100,CS1[50,110],CS2[110,110]
 				BEGIN
 					INSERT INTO BODE_DANGKY (CAUHOI, MAGVDK)
 					SELECT CauHoi, @MaGVDK
-					FROM @CauHoiDaThem;
+					FROM #CauHoiDaThem;
+					DROP TABLE #CauHoiDaThem;
 					COMMIT TRANSACTION
 					RETURN 0;-- 50A CS1, 20A CS2, 30B CS1
 				END
 				ELSE
 				BEGIN
 					SET @SoCauLay = @SoCauThi - @SoDong
-					INSERT INTO @CauHoiDaThem (CauHoi)
-					EXEC sp_LayCauHoi @SoCauLay, @TrinhDo, @MaMonHoc,@MaCoSo,0,@CauHoiDaThem
-					SELECT @SoDong = COUNT(*) FROM @CauHoiDaThem;
+					INSERT INTO #CauHoiDaThem (CauHoi)
+					EXEC sp_LayCauHoi @SoCauLay, @TrinhDo, @MaMonHoc,@MaCoSo,0
+					SELECT @SoDong = COUNT(*) FROM #CauHoiDaThem;
 					IF @SoDong = @SoCauLay -- 100,CS1[50,10],CS2[110,110]
 					BEGIN
 						INSERT INTO BODE_DANGKY (CAUHOI, MAGVDK)
 						SELECT CauHoi, @MaGVDK
-						FROM @CauHoiDaThem;
+						FROM #CauHoiDaThem;
+						DROP TABLE #CauHoiDaThem;
 						COMMIT TRANSACTION
 						RETURN 0; -- 50A CS1, 20A CS2, 10B CS1, 20A CS2
 					END
@@ -164,20 +171,22 @@ BEGIN
 					ELSE
 					BEGIN
 						SET @SoCauLay = @SoCauThi - @SoDong
-						INSERT INTO @CauHoiDaThem (CauHoi)
-						EXEC sp_LayCauHoi @SoCauLay, @TrinhDoThapHon, @MaMonHoc,@MaCoSo,0,@CauHoiDaThem
-						SELECT @SoDong = COUNT(*) FROM @CauHoiDaThem;
+						INSERT INTO #CauHoiDaThem 
+						EXEC sp_LayCauHoi @SoCauLay, @TrinhDoThapHon, @MaMonHoc,@MaCoSo,0
+						SELECT @SoDong = COUNT(*) FROM #CauHoiDaThem;
 						IF @SoDong =@SoCauLay -- 100,CS1[50,10],CS2[30,110]
 						BEGIN
 							INSERT INTO BODE_DANGKY (CAUHOI, MAGVDK)
 							SELECT CauHoi, @MaGVDK
-							FROM @CauHoiDaThem;
+							FROM #CauHoiDaThem;
+							DROP TABLE #CauHoiDaThem;
 							COMMIT TRANSACTION
 							RETURN 0;  -- 50A CS1, 20A CS2, 10B CS1, 10A CS2, 10B CS2
 						END
 							
 						ELSE --100,CS1[50,10],CS2[30,5]
 						BEGIN
+							DROP TABLE #CauHoiDaThem;
 							ROLLBACK TRANSACTION
 							RAISERROR( 'Không thể tạo đề do số câu không đủ', 16, 1) -- chỉ có 95 câu. Không đủ để tạo đề
 						END
@@ -186,6 +195,7 @@ BEGIN
 			END
 			ELSE---- 100,CS1[30,10],CS2[30,110]
 			BEGIN
+				DROP TABLE #CauHoiDaThem;
 				ROLLBACK TRANSACTION
 				RAISERROR( 'Không thể tạo đề do số câu không đủ', 16, 1)-- 100,CS1[30],CS2[30]	
 			END
@@ -194,14 +204,15 @@ BEGIN
 	ELSE-- Lấy Câu hỏi trình độ C
 	BEGIN
 		
-		INSERT INTO @CauHoiDaThem (CauHoi)
-		EXEC sp_LayCauHoi @SoCauThi, @TrinhDo, @MaMonHoc,@MaCoSo,1,@CauHoiDaThem
-		SELECT @SoDong = COUNT(*) FROM @CauHoiDaThem;
+		INSERT INTO #CauHoiDaThem
+		EXEC sp_LayCauHoi @SoCauThi, @TrinhDo, @MaMonHoc,@MaCoSo,1
+		SELECT @SoDong = COUNT(*) FROM #CauHoiDaThem;
 		IF @SoDong =@SoCauThi -- 100,CS1[100],CS2[100]
 		BEGIN
 			INSERT INTO BODE_DANGKY (CAUHOI, MAGVDK)
 			SELECT CauHoi, @MaGVDK
-			FROM @CauHoiDaThem;
+			FROM #CauHoiDaThem;
+			DROP TABLE #CauHoiDaThem;
 			COMMIT TRANSACTION
 			RETURN 0;--100C CS1
 		END	
@@ -209,19 +220,21 @@ BEGIN
 		BEGIN
 			
 			SET @SoCauLay = @SoCauThi - @SoDong
-			INSERT INTO @CauHoiDaThem (CauHoi)
-			EXEC sp_LayCauHoi @SoCauLay, @TrinhDo, @MaMonHoc,@MaCoSo,0,@CauHoiDaThem
-			SELECT @SoDong = COUNT(*) FROM @CauHoiDaThem;
+			INSERT INTO #CauHoiDaThem
+			EXEC sp_LayCauHoi @SoCauLay, @TrinhDo, @MaMonHoc,@MaCoSo,0
+			SELECT @SoDong = COUNT(*) FROM #CauHoiDaThem;
 			IF @SoDong =@SoCauLay -- 100,CS1[30],CS2[100]
 			BEGIN
 				INSERT INTO BODE_DANGKY (CAUHOI, MAGVDK)
 				SELECT CauHoi, @MaGVDK
-				FROM @CauHoiDaThem;
+				FROM #CauHoiDaThem;
+				DROP TABLE #CauHoiDaThem;
 				COMMIT TRANSACTION
 				RETURN 0;
 			END
 			ELSE
 			BEGIN
+				DROP TABLE #CauHoiDaThem;
 				ROLLBACK TRANSACTION
 				RAISERROR( 'Không thể tạo đề do số câu không đủ', 16, 1)-- 100,CS1[30],CS2[30]	
 			END
