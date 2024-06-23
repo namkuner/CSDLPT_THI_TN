@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -119,35 +120,128 @@ namespace ThiTN
             }
             try
             {
-
-
-
                 bdsGVDK.EndEdit();
                 bdsGVDK.ResetCurrentItem();
-                string ngayThiString = $"'{txtNGAYTHI.DateTime.ToString("yyyy-MM-dd HH:mm", System.Globalization.CultureInfo.InvariantCulture)}'";
-                String cauTruyVan = "EXEC sp_ThemGiaovienDangky '" + txtMAGV.Text + "', '"  + cmbMALOP.SelectedValue.ToString() + "', '" + cmbMAMH.SelectedValue.ToString() + "', '" + cmbTRINHDO.Text + "', " +txtLAN.Text +", "+ txtSOCAUTHI.Text + ", " + ngayThiString + ", " + txtTHOIGIAN.Text;
-                System.Console.Out.WriteLine(cauTruyVan);
 
+                using (SqlConnection conn = new SqlConnection(Program.connstr))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("sp_DK_TAODESV", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        int thoigian = int.Parse(txtTHOIGIAN.Text.Trim().Replace(".", ""));
+                        int socau = int.Parse(txtSOCAUTHI.Text.Trim().Replace(".", ""));
+                        int lan = int.Parse(txtLAN.Text.Trim().Replace(".", "")); 
 
-                Program.myReader = Program.ExecSqlDataReader(cauTruyVan);
+                        // Thêm các tham số đầu vào
+                        Console.WriteLine(1);
+                        cmd.Parameters.AddWithValue("@MAGV", txtMAGV.Text);
+                        Console.WriteLine(2);
+                        cmd.Parameters.AddWithValue("@MALOP", cmbMALOP.SelectedValue.ToString());
+                        Console.WriteLine(3);
+                        cmd.Parameters.AddWithValue("@MaMonHoc", cmbMAMH.SelectedValue.ToString());
+                        Console.WriteLine(4);   
+                        cmd.Parameters.AddWithValue("@TrinhDo", cmbTRINHDO.Text);
+                        Console.WriteLine(5);
+                        cmd.Parameters.AddWithValue("@LanThi", lan);
+                        Console.WriteLine(6);
+                        cmd.Parameters.AddWithValue("@SoCauThi", socau);
+                        Console.WriteLine(7);
+                        cmd.Parameters.AddWithValue("@NgayThi", txtNGAYTHI.DateTime.ToString("yyyy-MM-dd HH:mm"));
+                        Console.WriteLine(8);
+                        cmd.Parameters.AddWithValue("@ThoiGian", thoigian);
+                        Console.WriteLine(9);
+
+                        int returnCode = Convert.ToInt32(cmd.ExecuteScalar());
+
+                        if (returnCode == 0)
+                        {
+                            MessageBox.Show("Đăng ký thi thành công!", "", MessageBoxButtons.OK);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Đăng ký thi thất bại!", "", MessageBoxButtons.OK);
+                        }
+
+                        panelControl2.Enabled = false;
+                        btnThem.Enabled = true;
+                        btnGhi.Enabled = false;
+                        this.gIAOVIEN_DANGKYTableAdapter.ClearBeforeFill = true;
+                        this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
+                        this.gIAOVIEN_DANGKYTableAdapter.FillByMAGV(this.dS1.GIAOVIEN_DANGKY, Program.username);
+                       
+
+                    }
+                }
+
                 
-                panelControl2.Enabled = false;
-                btnThem.Enabled = true;
-                btnGhi.Enabled = false;
-                this.gIAOVIEN_DANGKYTableAdapter.ClearBeforeFill = true;
-                this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
-                this.gIAOVIEN_DANGKYTableAdapter.FillByMAGV(this.dS1.GIAOVIEN_DANGKY, Program.username);
-                MessageBox.Show("Đăng ký thi thành công!", "", MessageBoxButtons.OK);
             }
             catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi ghi đăng ký thi!/n" + ex.Message, "", MessageBoxButtons.OK);
+                
+            {   
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Lỗi ghi đăng ký thi!\n" + ex.Message, "", MessageBoxButtons.OK);
+                return;
             }
+
+
         }
 
         private void repositoryItemButtonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
 
+        }
+
+        private void btn_thoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btn_delete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            // Lấy mã đăng ký thi
+            string maDK = ((DataRowView)bdsGVDK[bdsGVDK.Position])["MAGVDK"].ToString();
+            // Kiểm tra đã chọn dòng hay chưa
+            if (maDK == "")
+            {
+                MessageBox.Show("Chưa chọn đăng ký thi cần xóa!", "", MessageBoxButtons.OK);
+                return;
+            }
+            if (MessageBox.Show("Bạn có thực sự muốn xóa đăng ký thi này?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                try
+                {
+                    using (SqlConnection conn = new SqlConnection(Program.connstr))
+                    {
+                        conn.Open();
+                        using (SqlCommand cmd = new SqlCommand("sp_XoaGiangVienDK", conn))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@MAGVDK", maDK);
+
+                            int returnCode = Convert.ToInt32(cmd.ExecuteScalar());
+
+                            if (returnCode == 0)
+                            {
+                                MessageBox.Show("Xóa đăng ký thi thành công!", "", MessageBoxButtons.OK);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Xóa đăng ký thi thất bại!", "", MessageBoxButtons.OK);
+                            }
+
+                            this.gIAOVIEN_DANGKYTableAdapter.ClearBeforeFill = true;
+                            this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
+                            this.gIAOVIEN_DANGKYTableAdapter.FillByMAGV(this.dS1.GIAOVIEN_DANGKY, Program.username);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi xóa đăng ký thi!\n" + ex.Message, "", MessageBoxButtons.OK);
+                    return;
+                }
+            }   
         }
     }
 }

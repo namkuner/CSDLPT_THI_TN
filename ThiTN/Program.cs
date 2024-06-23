@@ -1,5 +1,6 @@
 ﻿using DevExpress.Skins;
 using DevExpress.UserSkins;
+using DevExpress.XtraRichEdit.Commands;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -36,6 +37,7 @@ namespace ThiTN
 
         public static BindingSource bds_dspm = new BindingSource();  // giữ bdsPM khi đăng nhập
         public static Main frmChinh;
+        public static FrmDangNhap frmDangNhap;
         public static int KetNoi()
         {
             if (Program.conn != null && Program.conn.State == ConnectionState.Open)
@@ -124,7 +126,8 @@ namespace ThiTN
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             frmChinh = new Main();
-            Application.Run(new FrmDangNhap()); 
+            frmDangNhap = new FrmDangNhap();
+            Application.Run(frmDangNhap); 
         }
     }
 }
