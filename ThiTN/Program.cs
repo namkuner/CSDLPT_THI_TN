@@ -15,7 +15,7 @@ namespace ThiTN
     {
         public static SqlConnection conn = new SqlConnection();
         public static String connstr;
-        public static String connstr_publisher = "Data Source=ADMIN\\THI_TN;Initial Catalog=TN_CSDLPT;User ID=sa;Password=123456;TrustServerCertificate=True";
+        public static String connstr_publisher = "Data Source=MYHOPEANDDREAM;Initial Catalog=TN_CSDLPT;User ID=sa;Password=123;TrustServerCertificate=True";
 
         public static SqlDataReader myReader;
         public static String servername = "";

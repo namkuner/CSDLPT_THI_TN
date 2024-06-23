@@ -196,5 +196,33 @@ namespace ThiTN
             
 
         }
+
+        private void btnKHOA_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form form = this.CheckExists(typeof(frmKhoaLop));
+            if (form == null)
+            {
+
+                frmKhoaLop frmKhoaLop = new frmKhoaLop();
+                frmKhoaLop.MdiParent = this;
+
+                frmKhoaLop.Show();
+            }
+            else form.Activate();
+        }
+
+        private void btnSV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form form = this.CheckExists(typeof(frmSinhVien));
+            if (form == null)
+            {
+
+                frmSinhVien frmSinhVien = new frmSinhVien();
+                frmSinhVien.MdiParent = this;
+
+                frmSinhVien.Show();
+            }
+            else form.Activate();
+        }
     }
 }
