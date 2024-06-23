@@ -125,7 +125,7 @@ namespace ThiTN
                 bdsGVDK.EndEdit();
                 bdsGVDK.ResetCurrentItem();
                 string ngayThiString = $"'{txtNGAYTHI.DateTime.ToString("yyyy-MM-dd HH:mm", System.Globalization.CultureInfo.InvariantCulture)}'";
-                String cauTruyVan = "EXEC sp_ThemGiaovienDangky '" + txtMAGV.Text + "', '"  + cmbMALOP.SelectedValue.ToString() + "', '" + cmbMAMH.SelectedValue.ToString() + "', '" + cmbTRINHDO.Text + "', " +txtLAN.Text +", "+ txtSOCAUTHI.Text + ", " + ngayThiString + ", " + txtTHOIGIAN.Text;
+                String cauTruyVan = "EXEC sp_DK_TAODESV '" + txtMAGV.Text + "', '"  + cmbMALOP.SelectedValue.ToString() + "', '" + cmbMAMH.SelectedValue.ToString() + "', '" + cmbTRINHDO.Text + "', " +txtLAN.Text +", "+ txtSOCAUTHI.Text + ", " + ngayThiString + ", " + txtTHOIGIAN.Text;
                 System.Console.Out.WriteLine(cauTruyVan);
 
 
@@ -138,14 +138,7 @@ namespace ThiTN
                 this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.gIAOVIEN_DANGKYTableAdapter.FillByMAGV(this.dS1.GIAOVIEN_DANGKY, Program.username);
 
-                // Tạo đề ngẫu nhiên cho môn học vừa đăng ký
-                String maMH = cmbMAMH.SelectedValue.ToString();
-                String maLop = cmbMALOP.SelectedValue.ToString();
-                int lan = int.Parse(txtLAN.Text);
-                // ngày thi
-                DateTime ngayThi = txtNGAYTHI.DateTime;
-                String query = "EXEC sp_TaoDeChoSV '" + maMH + "', '" + maLop +  ", '" + ngayThi.ToString("yyyy-MM-dd HH:mm", System.Globalization.CultureInfo.InvariantCulture) + "'" + ", " + lan ;
-                Program.ExecSqlDataReader(query);
+                
 
 
                 MessageBox.Show("Đăng ký thi thành công!", "", MessageBoxButtons.OK);
@@ -153,7 +146,9 @@ namespace ThiTN
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi ghi đăng ký thi!/n" + ex.Message, "", MessageBoxButtons.OK);
+                return;
             }
+
         }
 
         private void repositoryItemButtonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
