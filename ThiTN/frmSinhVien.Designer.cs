@@ -34,8 +34,8 @@
             System.Windows.Forms.Label hOLabel;
             System.Windows.Forms.Label tENLabel;
             System.Windows.Forms.Label dIACHILabel;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSinhVien));
             System.Windows.Forms.Label mALOPLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSinhVien));
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
@@ -69,15 +69,15 @@
             this.colMALOP = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMATKHAU = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbMALOP = new System.Windows.Forms.ComboBox();
+            this.bdsLOP = new System.Windows.Forms.BindingSource(this.components);
             this.dIACHITextBox = new System.Windows.Forms.TextBox();
             this.txtTEN = new System.Windows.Forms.TextBox();
             this.txtHO = new System.Windows.Forms.TextBox();
             this.txtMASV = new System.Windows.Forms.TextBox();
             this.dteDOB = new DevExpress.XtraEditors.DateEdit();
             this.bdsBD = new System.Windows.Forms.BindingSource(this.components);
-            this.bdsLOP = new System.Windows.Forms.BindingSource(this.components);
             this.LOPTableAdapter = new ThiTN.DS1TableAdapters.LOPTableAdapter();
-            this.cmbMALOP = new System.Windows.Forms.ComboBox();
             nGAYSINHLabel = new System.Windows.Forms.Label();
             mASVLabel = new System.Windows.Forms.Label();
             hOLabel = new System.Windows.Forms.Label();
@@ -92,10 +92,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcSV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsLOP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dteDOB.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dteDOB.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsBD)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsLOP)).BeginInit();
             this.SuspendLayout();
             // 
             // nGAYSINHLabel
@@ -144,6 +144,15 @@
             dIACHILabel.Size = new System.Drawing.Size(66, 20);
             dIACHILabel.TabIndex = 10;
             dIACHILabel.Text = "Địa chỉ:";
+            // 
+            // mALOPLabel
+            // 
+            mALOPLabel.AutoSize = true;
+            mALOPLabel.Location = new System.Drawing.Point(379, 45);
+            mALOPLabel.Name = "mALOPLabel";
+            mALOPLabel.Size = new System.Drawing.Size(64, 20);
+            mALOPLabel.TabIndex = 11;
+            mALOPLabel.Text = "Mã lớp:";
             // 
             // bar2
             // 
@@ -485,6 +494,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin sinh viên";
             // 
+            // cmbMALOP
+            // 
+            this.cmbMALOP.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsSV, "MALOP", true));
+            this.cmbMALOP.DataSource = this.bdsLOP;
+            this.cmbMALOP.DisplayMember = "MALOP";
+            this.cmbMALOP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMALOP.FormattingEnabled = true;
+            this.cmbMALOP.Location = new System.Drawing.Point(465, 42);
+            this.cmbMALOP.Name = "cmbMALOP";
+            this.cmbMALOP.Size = new System.Drawing.Size(121, 28);
+            this.cmbMALOP.TabIndex = 12;
+            this.cmbMALOP.ValueMember = "MALOP";
+            // 
+            // bdsLOP
+            // 
+            this.bdsLOP.DataMember = "LOP";
+            this.bdsLOP.DataSource = this.dS1;
+            // 
             // dIACHITextBox
             // 
             this.dIACHITextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsSV, "DIACHI", true));
@@ -539,35 +566,9 @@
             this.bdsBD.DataMember = "FK_BANGDIEM_SINHVIEN1";
             this.bdsBD.DataSource = this.bdsSV;
             // 
-            // bdsLOP
-            // 
-            this.bdsLOP.DataMember = "LOP";
-            this.bdsLOP.DataSource = this.dS1;
-            // 
             // LOPTableAdapter
             // 
             this.LOPTableAdapter.ClearBeforeFill = true;
-            // 
-            // mALOPLabel
-            // 
-            mALOPLabel.AutoSize = true;
-            mALOPLabel.Location = new System.Drawing.Point(379, 45);
-            mALOPLabel.Name = "mALOPLabel";
-            mALOPLabel.Size = new System.Drawing.Size(64, 20);
-            mALOPLabel.TabIndex = 11;
-            mALOPLabel.Text = "Mã lớp:";
-            // 
-            // cmbMALOP
-            // 
-            this.cmbMALOP.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsSV, "MALOP", true));
-            this.cmbMALOP.DataSource = this.bdsLOP;
-            this.cmbMALOP.DisplayMember = "MALOP";
-            this.cmbMALOP.FormattingEnabled = true;
-            this.cmbMALOP.Location = new System.Drawing.Point(465, 42);
-            this.cmbMALOP.Name = "cmbMALOP";
-            this.cmbMALOP.Size = new System.Drawing.Size(121, 28);
-            this.cmbMALOP.TabIndex = 12;
-            this.cmbMALOP.ValueMember = "MALOP";
             // 
             // frmSinhVien
             // 
@@ -597,10 +598,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsLOP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dteDOB.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dteDOB.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsBD)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsLOP)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
