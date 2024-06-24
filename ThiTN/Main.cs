@@ -37,6 +37,7 @@ namespace ThiTN
             Console.WriteLine(Program.mGroup + "PRgram.m giy12321");
             this.WindowState = FormWindowState.Maximized;
             this.FormClosing += new FormClosingEventHandler(this.MainForm_FormClosing);
+            btnDangNhap_ItemClick(null, null);
         }
         public void buttons()
         {
@@ -318,6 +319,16 @@ namespace ThiTN
 
         private void btnDangNhap_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            Form form = this.CheckExists(typeof(FrmDangNhap));
+            if (form == null)
+            {
+
+                FrmDangNhap frmDangNhap = new FrmDangNhap();
+                frmDangNhap.MdiParent = this;
+
+                frmDangNhap.Show();
+            }
+            else form.Activate();   
 
         }
     }

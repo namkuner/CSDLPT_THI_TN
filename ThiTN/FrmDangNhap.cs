@@ -189,6 +189,8 @@ namespace ThiTN
                 Program.frmChinh.HOTEN.Text ="Họ và Tên: " + Program.mHoten;
                 Program.frmChinh.NHOM.Text ="Nhóm: " + Program.mGroup;
                 Program.frmChinh.buttons();
+                this.Close();
+                
 
             }
 
@@ -214,7 +216,8 @@ namespace ThiTN
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
+
         }
     }
 }
