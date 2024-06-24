@@ -159,20 +159,7 @@ namespace ThiTN
             }
             try
             {
-                bdsGV.EndEdit();
-                bdsGV.ResetCurrentItem();
-                this.gIAOVIENTableAdapter.Insert(
-                        txtMAGV.Text.Trim(),
-                        txtHo.Text.Trim(),
-                        txtTen.Text.Trim(),
-                        txtDiaChi.Text.Trim(),
-                                                                                              
-                        cmbMAKH.SelectedValue.ToString().Trim());
 
-                gcGV.Enabled = true;
-                panelControl2.Enabled = false;
-                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnRefresh.Enabled = true;
-                btnGhi.Enabled = btnPhucHoi.Enabled = false;
                 String cauTruyVan =
                    "EXEC sp_TaoTaiKhoan '" + this.txtMAGV.Text.Trim() + "' , '" + matKhau.Text + "', '"
                    + this.txtMAGV.Text.Trim() + "', '" + quyen.SelectedItem.ToString().Trim() + "'";
@@ -183,6 +170,7 @@ namespace ThiTN
                 {
 
                     Program.myReader = Program.ExecSqlDataReader(cauTruyVan);
+                    Console.WriteLine("constr" + Program.connstr);
                     /*khong co ket qua tra ve thi ket thuc luon*/
                     if (Program.myReader == null)
                     {
@@ -193,9 +181,25 @@ namespace ThiTN
                        "EXEC Link1.TN_CSDLPT.DBO.sp_TaoTaiKhoan '" + this.txtMAGV.Text.Trim() + "' , '" + matKhau.Text + "', '"
                        + this.txtMAGV.Text.Trim() + "', '" + quyen.SelectedItem.ToString().Trim() + "'";
                     Program.myReader = Program.ExecSqlDataReader(cauTruyVan);
+                    
                     Program.myReader.Close();
+                    string tb = "Đăng kí tài khoản thành công\n\nTài khoản: " + this.txtMAGV.Text.Trim() + "\nMật khẩu: " + matKhau.Text + "\n Mã Nhân Viên: " + this.txtMAGV.Text.Trim() + "\n Vai Trò: " + quyen.SelectedItem.ToString().Trim();
+                    bdsGV.EndEdit();
+                    bdsGV.ResetCurrentItem();
+                    this.gIAOVIENTableAdapter.Insert(
+                            txtMAGV.Text.Trim(),
+                            txtHo.Text.Trim(),
+                            txtTen.Text.Trim(),
+                            txtDiaChi.Text.Trim(),
+
+                            cmbMAKH.SelectedValue.ToString().Trim());
+
+                    gcGV.Enabled = true;
+                    panelControl2.Enabled = false;
+                    btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnRefresh.Enabled = true;
+                    btnGhi.Enabled = btnPhucHoi.Enabled = false;
                     hienthi();
-                    MessageBox.Show("Đăng kí tài khoản thành công\n\nTài khoản: " + this.txtMAGV.Text.Trim() + "\nMật khẩu: " + matKhau.Text + "\n Mã Nhân Viên: " + this.txtMAGV.Text.Trim() + "\n Vai Trò: " + quyen.SelectedItem.ToString().Trim(), "Thông Báo", MessageBoxButtons.OK);
+                    MessageBox.Show(tb,"Thông Báo", MessageBoxButtons.OK);
                     
                 }
                 catch (Exception ex)
@@ -255,6 +259,7 @@ namespace ThiTN
                         return;
                     }
                     Program.myReader.Close();
+                    Console.WriteLine("constr" + Program.connstr);
                     cauTruyVan =
             "EXEC Link1.TN_CSDLPT.DBO.sp_XoaLoginVaGiaoVien '" + maGV.Trim() + "' , '" + Program.username + "'";
 
@@ -264,8 +269,7 @@ namespace ThiTN
                         return;
                     }
                     Program.myReader.Close();
-                    bdsGV.RemoveCurrent();
-                    this.gIAOVIENTableAdapter.Update(this.dS1.GIAOVIEN);
+
                     MessageBox.Show("Xóa Thành công:");
                     hienthi();
                 }
