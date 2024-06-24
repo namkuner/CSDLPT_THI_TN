@@ -125,9 +125,8 @@ namespace ThiTN
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            frmChinh = new Main();
-            frmDangNhap = new FrmDangNhap();
-            Application.Run(frmDangNhap); 
+            Program.frmChinh = new ThiTN.Main();
+            Application.Run(frmChinh); 
         }
     }
 }

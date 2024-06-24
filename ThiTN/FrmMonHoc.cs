@@ -15,6 +15,7 @@ namespace ThiTN
     public partial class FrmMonHoc : Form
     {
         int vitri = 0;
+        bool dangthem = false;
         public FrmMonHoc()
         {
             InitializeComponent();
@@ -111,7 +112,8 @@ namespace ThiTN
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             
-             vitri = bdsMH.Position;
+            vitri = bdsMH.Position;
+            dangthem = true;
             txtpanel.Enabled = true;
             bdsMH.AddNew();
             btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnRefresh.Enabled =  false;
@@ -122,18 +124,16 @@ namespace ThiTN
         private void btnPhucHoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             bdsMH.CancelEdit();
-            if (btnThem.Enabled == false) 
+            if (dangthem == true) 
             {
                 bdsMH.RemoveCurrent();
-                
-
             }
             bdsMH.Position = vitri;
             gcMH.Enabled = true;
             txtpanel.Enabled = false;
             btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnRefresh.Enabled = true;
             btnGhi.Enabled = btnPhucHoi.Enabled = false;
-
+            dangthem = false;
         }
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
