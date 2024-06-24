@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.CodeParser;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,37 +14,96 @@ namespace ThiTN
     {
         private Boolean checkOpenDeThi = false;
         private FrmBoDe frmBoDe = null;
+
         public Main()
         {
+            
             InitializeComponent();
+            this.btnDangNhap.Enabled = true;
+            this.btnDangXuat.Enabled = false;
+            this.btn_MH.Enabled = false;
+            this.btnKHOA.Enabled = false;
+            this.btnSV.Enabled = false;
+            this.btnGV.Enabled = false;
+            this.DE_btn.Enabled = false;
+            this.btn_Thi.Enabled = false;
+            this.btn_Giaovien_Dangky.Enabled = false;
+            this.btn_THITHU.Enabled = false;
+            this.btnDangXuat.Enabled = false;
+            this.btn_KQTHISV.Enabled = false;
+            this.frmBangDiem.Enabled = false;
+            this.barButtonItem3.Enabled = false;
+
+            Console.WriteLine(Program.mGroup + "PRgram.m giy12321");
             this.WindowState = FormWindowState.Maximized;
+            this.FormClosing += new FormClosingEventHandler(this.MainForm_FormClosing);
+        }
+        public void buttons()
+        {
+            this.btnDangNhap.Enabled = false;
+            this.btnDangXuat.Enabled = true;
             if (Program.mGroup == "Truong")
             {
                 this.btn_MH.Enabled = true;
+                this.btnKHOA.Enabled = true;
+                this.btnSV.Enabled = true;
                 this.btnGV.Enabled = true;
-                this.btn_Giaovien_Dangky.Enabled = false;
-
-            }
-            else if (Program.mGroup == "Giangvien")
-            {
-                this.btn_MH.Enabled = true;
-                this.btnGV.Enabled = false;
-                this.btn_Giaovien_Dangky.Enabled = true;
                 this.DE_btn.Enabled = true;
+                this.btn_Thi.Enabled = true;
+                this.btn_Giaovien_Dangky.Enabled = true;
+                this.btn_THITHU.Enabled = false;
+                this.btnDangXuat.Enabled = true;
+                this.btn_KQTHISV.Enabled = true;
+                this.frmBangDiem.Enabled = true;
+                this.barButtonItem3.Enabled = true;
+
             }
             else if (Program.mGroup == "CoSo")
             {
-                this.btn_MH.Enabled = false;
-                this.btnGV.Enabled = false;
+                this.btn_MH.Enabled = true;
+                this.btnKHOA.Enabled = true;
+                this.btnSV.Enabled = true;
+                this.btnGV.Enabled = true;
+                this.DE_btn.Enabled = true;
+                this.btn_Thi.Enabled = true;
                 this.btn_Giaovien_Dangky.Enabled = true;
+                this.btn_THITHU.Enabled = false;
+                this.btnDangXuat.Enabled = true;
+                this.btn_KQTHISV.Enabled = true;
+                this.frmBangDiem.Enabled = true;
+                this.barButtonItem3.Enabled = true;
             }
+            else if (Program.mGroup == "Giangvien")
+            {
+                this.btn_MH.Enabled = false;
+                this.btnKHOA.Enabled = false;
+                this.btnSV.Enabled = false;
+                this.btnGV.Enabled = true;
+                this.DE_btn.Enabled = true;
+                this.btn_Thi.Enabled = false;
+                this.btn_Giaovien_Dangky.Enabled = true;
+                this.btn_THITHU.Enabled = true;
+                this.btnDangXuat.Enabled = true;
+                this.btn_KQTHISV.Enabled = false;
+                this.frmBangDiem.Enabled = true;
+                this.barButtonItem3.Enabled = false;
+            }
+
             else if (Program.mGroup == "Sinhvien")
             {
                 this.btn_MH.Enabled = false;
+                this.btnKHOA.Enabled = false;
+                this.btnSV.Enabled = false;
                 this.btnGV.Enabled = false;
+                this.DE_btn.Enabled = false;
+                this.btn_Thi.Enabled = true;
                 this.btn_Giaovien_Dangky.Enabled = false;
+                this.btn_THITHU.Enabled = false;
+                this.btnDangXuat.Enabled = true;
+                this.btn_KQTHISV.Enabled = false;
+                this.frmBangDiem.Enabled = false;
+                this.barButtonItem3.Enabled = false;
             }
-            this.FormClosing += new FormClosingEventHandler(this.MainForm_FormClosing);
         }
 
         private void xtraScrollableControl1_Click(object sender, EventArgs e)
@@ -188,12 +248,43 @@ namespace ThiTN
         private void btnDangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
-            this.Hide();
-            Program.frmDangNhap.ShowDialog();
-            Program.frmDangNhap.Show();
-            Program.frmDangNhap.Close();
+            btnDangNhap.Enabled = true;
+            btnDangXuat.Enabled = false;
+            this.btn_MH.Enabled = false;
+            this.btnKHOA.Enabled = false;
+            this.btnSV.Enabled = false;
+            this.btnGV.Enabled = false;
+            this.DE_btn.Enabled = false;
+            this.btn_Thi.Enabled = false;
+            this.btn_Giaovien_Dangky.Enabled = false;
+            this.btn_THITHU.Enabled = false;
+            this.btnDangXuat.Enabled = false;
+            this.btn_KQTHISV.Enabled = false;
+            this.frmBangDiem.Enabled = false;
+            this.barButtonItem3.Enabled = false;
+            Program.frmChinh.MAGV.Text = "Mã GV: " ;
+            Program.frmChinh.HOTEN.Text = "Họ và Tên: ";
+            Program.frmChinh.NHOM.Text = "Nhóm: " ;
+            Program.mloginDN = "";
+            Program.passwordDN = "";
+            Program.mGroup = "";
+            Program.mHoten = "";
+            Program.maSV = "";
+            Program.servername = "";
+            Program.username = "";
+            Program.mlogin = "";
+            Program.password = "";
+            Form f = this.CheckExists(typeof(FrmDangNhap));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                FrmDangNhap form = new FrmDangNhap();
+                form.Show();
+            }
 
-            
 
         }
 
@@ -223,6 +314,11 @@ namespace ThiTN
                 frmSinhVien.Show();
             }
             else form.Activate();
+        }
+
+        private void btnDangNhap_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
         }
     }
 }

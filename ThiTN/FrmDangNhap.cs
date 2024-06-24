@@ -25,6 +25,7 @@ namespace ThiTN
                 return 0;
             }
         }
+
         public FrmDangNhap()
         {
             InitializeComponent();
@@ -139,13 +140,9 @@ namespace ThiTN
                 Program.frmChinh.NHOM.Text = "Nhóm: " + Program.mGroup;
                 Program.myReader.Close();
                 Program.conn.Close();
+                Program.frmChinh.buttons();
 
 
-
-                this.Hide();
-                Program.frmChinh.ShowDialog();
-                Program.frmChinh.Show();
-                Program.frmChinh.Close();
                 return;
             }
             else
@@ -191,12 +188,8 @@ namespace ThiTN
                 Program.frmChinh.MAGV.Text ="Mã GV: " + Program.username;
                 Program.frmChinh.HOTEN.Text ="Họ và Tên: " + Program.mHoten;
                 Program.frmChinh.NHOM.Text ="Nhóm: " + Program.mGroup;
+                Program.frmChinh.buttons();
 
-
-                this.Hide();
-                Program.frmChinh.ShowDialog();
-                Program.frmChinh.Show();
-                Program.frmChinh.Close();
             }
 
 
